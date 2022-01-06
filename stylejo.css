@@ -1,0 +1,18 @@
+body{
+    background-color: aqua;
+}
+.open_base{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(219, 146, 146);
+}
+.close_base{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(75, 28, 28);
+}
+.return_base{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(8, 105, 109);
+}
