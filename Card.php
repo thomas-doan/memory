@@ -30,11 +30,40 @@ class Card
         $id_carte = $carte_cible->id_carte;
         $_SESSION['verif']["$id_carte"] = $carte_cible;
 
-
+        $tableau_face_carte = [];
         if (count($_SESSION['verif']) == 1) {
+
             $_SESSION['verif']["$id_carte"]->etat_carte = 0;
         } elseif (count($_SESSION['verif']) == 2) {
-            $_SESSION['verif']["$id_carte"]->etat_carte = 0;
+
+            foreach ($_SESSION['verif'] as $value) {
+
+                array_push($tableau_face_carte, $value->face_carte);
+            }
+
+
+            if ($tableau_face_carte[0] == $tableau_face_carte[1]) {
+
+
+                $_SESSION['verif']["$id_carte"]->etat_carte = 0;
+                unset($_SESSION['verif']);
+                header("Refresh:0; ./index.php");
+                exit();
+            } else {
+
+
+                $_SESSION['verif']["$id_carte"]->etat_carte = 0;
+                header("Refresh:2 ; ./index.php");
+
+
+                foreach ($_SESSION['verif'] as $value) {
+
+                    $_SESSION['verif']["$value->id_carte"]->etat_carte = 1;
+                }
+
+                header("Refresh:1 ; ./index.php");
+                unset($_SESSION['verif']);
+            }
         }
     }
 }

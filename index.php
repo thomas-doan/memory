@@ -42,17 +42,34 @@ if (isset($_POST['submit'])) {
 
     /*         $_SESSION['grille'][$_POST['position']]->retourner_carte($_SESSION['grille'][$_POST['position']]);
  */
-    echo "<pre>";
+    /*   echo "<pre>";
     var_dump($_SESSION['verif']);
     echo "</pre>";
     echo "<br>";
     echo "<pre>";
     var_dump(count($_SESSION['verif']));
-    echo "</pre>";
+    echo $_SESSION['verif'][0]->face_carte;
+    echo "</pre>"; */
+
+    /*    $tableau = [];
+    foreach ($_SESSION['verif'] as $value) {
+        array_push($tableau, $value->face_carte);
+    }
+    if ($tableau[0] == $tableau[1]) {
+        echo "PAIR OK";
+    } else {
+        echo "PAIR NON CORRESPONDANTE";
+    } */
+
+    /* echo "<br>";
+    var_dump($tableau);
+    echo "<br>"; */
 }
 
 
 /* var_dump($_SESSION['grille'][$_POST['position']]); */
+
+/* var_dump($_SESSION['verif']); */
 ?>
 
 <!DOCTYPE html>
@@ -98,6 +115,8 @@ if (isset($_POST['submit'])) {
 
             foreach ($_SESSION['grille'] as $key => $value) {
 
+
+
                 if ($value->etat_carte === 1) { ?>
                     <div>
                         <form method='POST' action=''>
@@ -112,7 +131,7 @@ if (isset($_POST['submit'])) {
                     </div>
                 <?php } else { ?>
                     <div>
-                        <img src="<?= $value->face_carte ?>" alt="carte de dos" width='60vw' height='60vh'>
+                        <img src="<?= $value->face_carte ?>" alt="face de dos" width='60vw' height='60vh'>
                     </div>
 
             <?php
