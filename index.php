@@ -2,24 +2,25 @@
 require('Card.php');
 session_start();
 
-$casque = new Card(1, "./img/dos.png", "./img/casque.png", 1);
-$clou = new Card(1, "./img/dos.png", "./img/clou.png", 2);
-$crayon = new Card(1, "./img/dos.png", "./img/crayon.png", 3);
-$ecran = new Card(1, "./img/dos.png", "./img/ecran.png", 4);
-$ecran2 = new Card(1, "./img/dos.png", "./img/ecran2.png", 5);
-$livre_rouge_ouvert = new Card(1, "./img/dos.png", "./img/livre_rouge_ouvert.png", 6);
+$casque = new Card(1, "./img/dos.png", "./img/casque.png", 0);
+$clou = new Card(1, "./img/dos.png", "./img/clou.png", 1);
+$crayon = new Card(1, "./img/dos.png", "./img/crayon.png", 2);
+$ecran = new Card(1, "./img/dos.png", "./img/ecran.png", 3);
+$ecran2 = new Card(1, "./img/dos.png", "./img/ecran2.png", 4);
+$livre_rouge_ouvert = new Card(1, "./img/dos.png", "./img/livre_rouge_ouvert.png", 5);
+/// GENERATION DES DOUBLES CARTES ///
+$casque_v2 = new Card(1, "./img/dos.png", "./img/casque.png", 6);
+$clou_v2 = new Card(1, "./img/dos.png", "./img/clou.png", 7);
+$crayon_v2 = new Card(1, "./img/dos.png", "./img/crayon.png", 8);
+$ecran_v2 = new Card(1, "./img/dos.png", "./img/ecran.png", 9);
+$ecran2_v2 = new Card(1, "./img/dos.png", "./img/ecran2.png", 10);
+$livre_rouge_ouvert_v2 = new Card(1, "./img/dos.png", "./img/livre_rouge_ouvert.png", 11);
 
-$casque_v2 = new Card(1, "./img/dos.png", "./img/casque.png", 7);
-$clou_v2 = new Card(1, "./img/dos.png", "./img/clou.png", 8);
-$crayon_v2 = new Card(1, "./img/dos.png", "./img/crayon.png", 9);
-$ecran_v2 = new Card(1, "./img/dos.png", "./img/ecran.png", 10);
-$ecran2_v2 = new Card(1, "./img/dos.png", "./img/ecran2.png", 11);
-$livre_rouge_ouvert_v2 = new Card(1, "./img/dos.png", "./img/livre_rouge_ouvert.png", 12);
 
 if (!isset($_SESSION['grille']) && isset($_POST['initialiser_jeu'])) {
 
     $grille_jeu = new Grille($_POST['initialiser_jeu']);
-    $grille = $grille_jeu->creation_grille($casque, $clou, $crayon, $ecran, $ecran2, $livre_rouge_ouvert, $casque_V2, $clou_V2, $crayon_V2, $ecran_V2, $ecran2_V2, $livre_rouge_ouvert_V2);
+    $grille = $grille_jeu->creation_grille($casque, $clou, $crayon, $ecran, $ecran2, $livre_rouge_ouvert, $casque_v2, $clou_v2, $crayon_v2, $ecran_v2, $livre_rouge_ouvert_v2, $ecran2_v2);
     $grille_melanger = $grille_jeu->melange_cartes_grille($grille);
     $_SESSION['grille'] = $grille_melanger;
 }
@@ -27,14 +28,29 @@ if (!isset($_SESSION['grille']) && isset($_POST['initialiser_jeu'])) {
 if (isset($_POST['relancer_jeu'])) {
 
     $grille_jeu = new Grille($_POST['relancer_jeu']);
-    $grille = $grille_jeu->creation_grille($casque, $clou, $crayon, $ecran, $ecran2, $livre_rouge_ouvert, $casque_V2, $clou_V2, $crayon_V2, $ecran_V2, $ecran2_V2, $livre_rouge_ouvert_V2);
+    $grille = $grille_jeu->creation_grille($casque, $clou, $crayon, $ecran, $ecran2, $livre_rouge_ouvert, $casque_v2, $clou_v2, $crayon_v2, $ecran_v2, $livre_rouge_ouvert_v2, $ecran2_v2);
     $grille_melanger = $grille_jeu->reset_session_jeu($grille);
     $_SESSION['grille'] = $grille_melanger;
 }
 
 if (isset($_POST['submit'])) {
-    echo "test ok";
-};
+
+
+
+    /* if (isset($_POST['etat_carte'])) {
+
+        $_SESSION['grille'][$_POST['position']]->etat_carte = 0;
+    } */
+
+    if (isset($_POST['etat_carte'])) {
+
+        $_SESSION['grille'][$_POST['position']]->retourner_carte($_SESSION['grille'][$_POST['position']]);
+    }
+}
+
+
+
+var_dump($_POST);
 ?>
 
 <!DOCTYPE html>
@@ -77,11 +93,13 @@ if (isset($_POST['submit'])) {
         <div class="container_jeu">
             <?php
 
-            foreach ($_SESSION['grille'] as $value) {
 
-                if ($value->etat_carte == 1) { ?>
+            foreach ($_SESSION['grille'] as $key => $value) {
+
+                if ($value->etat_carte === 1) { ?>
                     <div>
                         <form method='POST' action=''>
+                            <input type="hidden" name="position" value="<?= $key ?>" />
                             <input type="hidden" name="id_carte" value="<?= $value->id_carte ?>" />
                             <input type="hidden" name="etat_carte" value="<?= $value->etat_carte ?>" />
                             <input type="hidden" name="face_carte" value="<?= $value->face_carte ?>" />
@@ -97,7 +115,10 @@ if (isset($_POST['submit'])) {
 
             <?php
                 }
-            }; ?>
+            };
+
+
+            ?>
         </div>
 
 

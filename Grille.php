@@ -8,21 +8,20 @@ class Grille extends Card
 
     function __construct($taille_grille)
     {
-        /* parent::__construct(); */
         $this->taille_grille = $taille_grille;
     }
 
 
     public function creation_grille(...$objet_carte)
     {
-        $resultat = array($objet_carte);
+        $resultat = array_merge($objet_carte);
         return $resultat;
     }
 
     public function melange_cartes_grille($grille)
     {
 
-        shuffle($grille);
+        /* shuffle($grille); */
         $resultat = $grille;
         return $resultat;
     }
@@ -32,9 +31,5 @@ class Grille extends Card
         shuffle($grille_reset);
         $resultat = $grille_reset;
         return $resultat;
-    }
-
-    public function retourner_carte()
-    {
     }
 }

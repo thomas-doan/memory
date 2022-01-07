@@ -18,4 +18,9 @@ class Card
         $this->face_carte = $face_carte;
         $this->id_carte = $id_carte;
     }
+
+    public function retourner_carte($carte_cible)
+    {
+        $carte_cible->etat_carte = 0;
+    }
 }
