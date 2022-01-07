@@ -29,12 +29,12 @@ class Card
 
         $id_carte = $carte_cible->id_carte;
         $_SESSION['verif']["$id_carte"] = $carte_cible;
-        $valeur = $_SESSION['verif']["$id_carte"];
 
-        $tableau_verif = array();
-        array_push($tableau_verif, $valeur, $valeur);
-        $resultat = $tableau_verif;
 
-        return $resultat;
+        if (count($_SESSION['verif']) == 1) {
+            $_SESSION['verif']["$id_carte"]->etat_carte = 0;
+        } elseif (count($_SESSION['verif']) == 2) {
+            $_SESSION['verif']["$id_carte"]->etat_carte = 0;
+        }
     }
 }

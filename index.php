@@ -42,10 +42,16 @@ if (isset($_POST['submit'])) {
 
     /*         $_SESSION['grille'][$_POST['position']]->retourner_carte($_SESSION['grille'][$_POST['position']]);
  */
+    echo "<pre>";
+    var_dump($_SESSION['verif']);
+    echo "</pre>";
+    echo "<br>";
+    echo "<pre>";
+    var_dump(count($_SESSION['verif']));
+    echo "</pre>";
 }
-echo "<pre>";
-var_dump($_SESSION['verif']);
-echo "</pre>";
+
+
 /* var_dump($_SESSION['grille'][$_POST['position']]); */
 ?>
 
