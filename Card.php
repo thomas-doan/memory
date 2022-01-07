@@ -23,4 +23,18 @@ class Card
     {
         $carte_cible->etat_carte = 0;
     }
+
+    public function verifier_couple_carte($carte_cible)
+    {
+
+        $id_carte = $carte_cible->id_carte;
+        $_SESSION['verif']["$id_carte"] = $carte_cible;
+        $valeur = $_SESSION['verif']["$id_carte"];
+
+        $tableau_verif = array();
+        array_push($tableau_verif, $valeur, $valeur);
+        $resultat = $tableau_verif;
+
+        return $resultat;
+    }
 }

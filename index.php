@@ -22,7 +22,6 @@ if (!isset($_SESSION['grille']) && isset($_POST['initialiser_jeu'])) {
     $grille_jeu = new Grille($_POST['initialiser_jeu']);
     $grille = $grille_jeu->creation_grille($casque, $clou, $crayon, $ecran, $ecran2, $livre_rouge_ouvert, $casque_v2, $clou_v2, $crayon_v2, $ecran_v2, $livre_rouge_ouvert_v2, $ecran2_v2);
     $grille_melanger = $grille_jeu->melange_cartes_grille($grille);
-    $_SESSION['grille'] = $grille_melanger;
 }
 
 if (isset($_POST['relancer_jeu'])) {
@@ -30,27 +29,24 @@ if (isset($_POST['relancer_jeu'])) {
     $grille_jeu = new Grille($_POST['relancer_jeu']);
     $grille = $grille_jeu->creation_grille($casque, $clou, $crayon, $ecran, $ecran2, $livre_rouge_ouvert, $casque_v2, $clou_v2, $crayon_v2, $ecran_v2, $livre_rouge_ouvert_v2, $ecran2_v2);
     $grille_melanger = $grille_jeu->reset_session_jeu($grille);
-    $_SESSION['grille'] = $grille_melanger;
 }
 
 if (isset($_POST['submit'])) {
 
+    $test = $_SESSION['grille'][$_POST['position']]->verifier_couple_carte($_SESSION['grille'][$_POST['position']]);
+    /*    echo "<pre>";
+    var_dump($test);
+    echo "</pre>";
+    echo "<br>";
+    echo "<br>"; */
 
-
-    /* if (isset($_POST['etat_carte'])) {
-
-        $_SESSION['grille'][$_POST['position']]->etat_carte = 0;
-    } */
-
-    if (isset($_POST['etat_carte'])) {
-
-        $_SESSION['grille'][$_POST['position']]->retourner_carte($_SESSION['grille'][$_POST['position']]);
-    }
+    /*         $_SESSION['grille'][$_POST['position']]->retourner_carte($_SESSION['grille'][$_POST['position']]);
+ */
 }
-
-
-
-var_dump($_POST);
+echo "<pre>";
+var_dump($_SESSION['verif']);
+echo "</pre>";
+/* var_dump($_SESSION['grille'][$_POST['position']]); */
 ?>
 
 <!DOCTYPE html>
