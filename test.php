@@ -1,37 +1,51 @@
 <?php
 session_start();
-var_dump($_POST);
+/* var_dump($_POST); */
+/* var_dump($_SESSION['position_case']); */
 
-function afficher_tableau($tableau_pour_afficher)
+
+
+$tbl_affiche_carte_dos = [
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+];
+
+function afficher_tableau($tbl_zero)
 {
-
-    $premier_tbl = [
-
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-    ];
-
-    //transfert de donnée Session -> tableau //
-    $tableau = $tableau_pour_afficher;
-
+    //transfert de donnée -> tableau //
+    $premier_tbl = $tbl_zero;
 
     $valeur = "";
 
+    $clos = "
+     height: 3rem;
+    width: 3rem;
+    padding: 1rem;
+    margin: 0.2rem;
+    background-color: blue;
+    border: none;
+    border-radius: 10%;' 
+    ";
 
     //algo qui recup la valeur des matrices et la position //
 
-    for ($i = 0; $i < count($tableau); $i++) {
-        echo '<div class="ensemble_valeur">';
-        for ($j = 0; $j < count($tableau[$i]); $j++) {
+    for ($i = 0; $i < count($premier_tbl); $i++) {
 
-            $valeur = $tableau[$j][$i];
+        echo '<div class="ensemble_valeur">';
+
+        for ($j = 0; $j < count($premier_tbl[$i]); $j++) {
+
+            $valeur = $premier_tbl[$j][$i];
             echo $valeur;
             echo " $i" . " $j";
-            if ($tableau[$j][$i] !== null) {
-                echo  "<div class='bouton choix$valeur'><form method='POST' action=''>
-             <button type='submit' class='choixTOTO$valeur' name = '$valeur'>
+            if ($premier_tbl[$j][$i] === 0) {
+
+                echo  "<div><form method='POST' action=''>
+             <button type='submit' style='$clos'
+        
+            name ='$i$j' value='$i$j'>
              </button> 
              </form></div>";
             } else {
@@ -43,6 +57,30 @@ function afficher_tableau($tableau_pour_afficher)
     }
 }
 
+function retourner_carte(/* $position_carte */)
+{
+
+    $ligne = 3;
+    $colonne = 2;
+    $tbl_affiche_carte_dos[$ligne][$colonne] = $_SESSION['tbl'][$ligne][$colonne];
+    afficher_tableau($tbl_affiche_carte_dos);
+}
+
+
+
+
+
+/*        if ($tableau[$j][$i] == 0) {
+
+
+            echo  "<div class='bouton choix$valeur'><form method='POST' action=''>
+             <button type='submit' class='choixTOTO$valeur' name = 'valeur_$valeur'>
+             </button> 
+             </form></div>";
+        } else {
+            $transfert = afficher_img($valeur);
+            echo "<div><img src=$transfert width='60vw' height='50vh'></div>";
+        } */
 
 
 function afficher_img($valeurtbl)
@@ -93,11 +131,9 @@ function afficher_img($valeurtbl)
     return $chemin;
 }
 
-
-
 function melange_valeur_tableau($tableau_melanger)
 {
-    echo "test shuffle";
+
     shuffle($tableau_melanger);
     shuffle($tableau_melanger[1]);
     shuffle($tableau_melanger[2]);
@@ -119,13 +155,15 @@ if (!isset($_SESSION['tbl'])) {
     ];
 
     //  fct shuffle les nombres du tableau
-
-
     $_SESSION['tbl'] = melange_valeur_tableau($tableau_initialise);
 } else {
     $_SESSION['tbl'];
 }
 
+if (isset($_POST)) {
+    $_SESSION['position_case'] = $_POST;
+    /*     array_push($_SESSION['position_case'], $_POST); */
+}
 
 
 
@@ -147,7 +185,14 @@ if (!isset($_SESSION['tbl'])) {
 
 <body>
     <div class="container_tbl">
-        <?php afficher_tableau($_SESSION['tbl']) ?>
+        <?php
+        echo "<br>";
+        var_dump($_SESSION['position_case']);
+        echo "<br>";
+
+        /* retourner_carte($_SESSION['position_case']);  */
+        retourner_carte();
+        afficher_tableau($tbl_affiche_carte_dos) ?>
     </div>
 
 

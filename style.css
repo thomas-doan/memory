@@ -1,83 +1,50 @@
-table,
-td {
-    border: 1px solid #333;
-}
-
-thead,
-tfoot {
-    background-color: #333;
-    color: #fff;
-}
-
-.container_tbl {
-    height: 100vh;
-    width: 100vw;
-    background-color: cadetblue;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.bouton {
-    height: 3rem;
-    width: 3rem;
-    padding: 1rem;
-    margin: 0.2rem;
-    background-color: brown;
-    border: none;
-    border-radius: 10%;
-}
-
-.choix3 {
-    background-color: chartreuse;
-}
-
-
-/*
-.choix1 {
-    background-image: url(./img/casque.png);
-}
-
-.choix2 {
-    background-image: url(./img/clou.png);
-}
-
-.choix3 {
-    background-image: url(./img/crayon.png);
-}
-
-.choix4 {
-    background-image: url(./img/ecran.png);
-}
-
-.choix5 {
-    background-image: url(./img/ecran2.png);
-}
-
-.choix6 {
-    background-image: url(./img/marteau.png);
-}
-
-.choix7 {
-    background-image: url(./img/micro.png);
-}
-
-.choix8 {
-    background-image: url(./img/outil.png);
-}
-
-.choix9 {
-    background-image: url(./img/pinceau.png);
-} */
-
-.toto {
-    font-weight: bold;
-}
-
-.first44 {
-    color: aquamarine;
-}
-
-.second45 {
-    color: red;
-}
+      @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+      * {
+          margin: 0;
+          padding: 0;
+          font-family: 'Noto', sans-serif;
+      }
+      
+      .navigation {
+          background-color: rgb(211, 237, 238);
+          display: flex;
+          justify-content: space-around;
+          padding: 2rem;
+      }
+      
+      .navigation li,
+      a:link,
+      a {
+          list-style: none;
+          text-decoration: none;
+          color: rgb(54, 126, 54);
+      }
+      
+      .boutons_jeux {
+          display: flex;
+          justify-content: space-evenly;
+          padding: 2rem;
+      }
+      
+      .boutons_jeux form button {
+          cursor: pointer;
+          border: none;
+          border-radius: 5%;
+          background-color: rgb(211, 237, 238);
+          color: rgb(54, 126, 54);
+          padding: 2rem;
+      }
+      
+      .container_jeu {
+          display: grid;
+          gap: 1rem;
+          grid-template-columns: repeat(4, min-content);
+          grid-template-rows: repeat(4, min-content);
+          justify-content: center;
+      }
+      
+      .container_jeu form button {
+          cursor: pointer;
+      }

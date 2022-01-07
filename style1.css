@@ -1,0 +1,91 @@
+table,
+td {
+    border: 1px solid #333;
+}
+
+thead,
+tfoot {
+    background-color: #333;
+    color: #fff;
+}
+
+.container_tbl {
+    height: 100vh;
+    width: 100vw;
+    background-color: cadetblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bouton {
+    height: 3rem;
+    width: 3rem;
+    padding: 1rem;
+    margin: 0.2rem;
+    background-color: brown;
+    border: none;
+    border-radius: 10%;
+}
+
+.close_carte {
+    height: 3rem;
+    width: 3rem;
+    padding: 1rem;
+    margin: 0.2rem;
+    background-color: brown;
+    border: none;
+    border-radius: 10%;
+}
+
+.open_carte0 {
+    background-image: url(./img/livre_rouge_ouvert.png);
+}
+
+.open_carte1 {
+    background-image: url(./img/casque.png);
+}
+
+.open_carte2 {
+    background-image: url(./img/clou.png);
+}
+
+.open_carte3 {
+    background-image: url(./img/crayon.png);
+}
+
+.open_carte4 {
+    background-image: url(./img/ecran.png);
+}
+
+.open_carte5 {
+    background-image: url(./img/ecran2.png);
+}
+
+.open_carte6 {
+    background-image: url(./img/marteau.png);
+}
+
+.open_carte7 {
+    background-image: url(./img/micro.png);
+}
+
+.open_carte8 {
+    background-image: url(./img/outil.png);
+}
+
+.open_carte9 {
+    background-image: url(./img/pinceau.png);
+}
+
+.toto {
+    font-weight: bold;
+}
+
+.first44 {
+    color: aquamarine;
+}
+
+.second45 {
+    color: red;
+}
