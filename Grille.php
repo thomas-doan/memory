@@ -11,6 +11,7 @@ class Grille extends Card
         $this->taille_grille = $taille_grille;
     }
 
+
     public function creation_grille(...$objet_carte)
     {
         $resultat = array_merge($objet_carte);
@@ -20,7 +21,9 @@ class Grille extends Card
     public function melange_cartes_grille($grille)
     {
 
-        shuffle($grille);
+        shuffle($grille[0]);
+
+
         $resultat = $grille;
         $_SESSION['grille'] = $resultat;
         return $resultat;

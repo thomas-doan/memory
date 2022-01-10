@@ -1,39 +1,29 @@
 <?php
 require('Card.php');
+require('fonction.php');
 session_start();
 
-$casque = new Card(1, "./img/dos.png", "./img/casque.png", 0);
-$clou = new Card(1, "./img/dos.png", "./img/clou.png", 1);
-$crayon = new Card(1, "./img/dos.png", "./img/crayon.png", 2);
-$ecran = new Card(1, "./img/dos.png", "./img/ecran.png", 3);
-$ecran2 = new Card(1, "./img/dos.png", "./img/ecran2.png", 4);
-$livre_rouge_ouvert = new Card(1, "./img/dos.png", "./img/livre_rouge_ouvert.png", 5);
-/// GENERATION DES DOUBLES CARTES ///
-$casque_v2 = new Card(1, "./img/dos.png", "./img/casque.png", 6);
-$clou_v2 = new Card(1, "./img/dos.png", "./img/clou.png", 7);
-$crayon_v2 = new Card(1, "./img/dos.png", "./img/crayon.png", 8);
-$ecran_v2 = new Card(1, "./img/dos.png", "./img/ecran.png", 9);
-$ecran2_v2 = new Card(1, "./img/dos.png", "./img/ecran2.png", 10);
-$livre_rouge_ouvert_v2 = new Card(1, "./img/dos.png", "./img/livre_rouge_ouvert.png", 11);
 
-
-if (!isset($_SESSION['grille']) && isset($_POST['initialiser_jeu'])) {
+if (!isset($_SESSION['grille'][0]) && isset($_POST['initialiser_jeu'])) {
 
     $grille_jeu = new Grille($_POST['initialiser_jeu']);
-    $grille = $grille_jeu->creation_grille($casque, $clou, $crayon, $ecran, $ecran2, $livre_rouge_ouvert, $casque_v2, $clou_v2, $crayon_v2, $ecran_v2, $livre_rouge_ouvert_v2, $ecran2_v2);
+    /*     $grille = $grille_jeu->creation_grille($casque, $clou, $crayon, $ecran, $ecran2, $livre_rouge_ouvert, $casque_v2, $clou_v2, $crayon_v2, $ecran_v2, $livre_rouge_ouvert_v2, $ecran2_v2); */
+    $grille = $grille_jeu->creation_grille(tableau_objets_random($_POST['initialiser_jeu']));
+
     $grille_melanger = $grille_jeu->melange_cartes_grille($grille);
 }
 
 if (isset($_POST['relancer_jeu'])) {
 
     $grille_jeu = new Grille($_POST['relancer_jeu']);
-    $grille = $grille_jeu->creation_grille($casque, $clou, $crayon, $ecran, $ecran2, $livre_rouge_ouvert, $casque_v2, $clou_v2, $crayon_v2, $ecran_v2, $livre_rouge_ouvert_v2, $ecran2_v2);
+    /*     $grille = $grille_jeu->creation_grille($casque, $clou, $crayon, $ecran, $ecran2, $livre_rouge_ouvert, $casque_v2, $clou_v2, $crayon_v2, $ecran_v2, $livre_rouge_ouvert_v2, $ecran2_v2); */
+    $grille = $grille_jeu->creation_grille(tableau_objets_random(6));
     $grille_melanger = $grille_jeu->reset_session_jeu($grille);
 }
 
 if (isset($_POST['submit'])) {
 
-    $test = $_SESSION['grille'][$_POST['position']]->verifier_couple_carte($_SESSION['grille'][$_POST['position']], $_POST['position']);
+    $test = $_SESSION['grille'][0][$_POST['position']]->verifier_couple_carte($_SESSION['grille'][0][$_POST['position']], $_POST['position']);
 }
 
 if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
@@ -70,11 +60,28 @@ if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
     <main>
 
         <div class="boutons_jeux">
-            <form method='POST' action=''>
+            <!--  <form method='POST' action=''>
                 <button type='submit' name='initialiser_jeu' value='12'>
                     Débuter memory
                 </button>
+            </form> -->
+
+            <form method='POST' action=''>
+                <select name="initialiser_jeu">
+
+                    <option value="">Choisir vos nombres de paires</option>
+                    <?php for ($i = 3; $i <= 12; $i++) {
+                    ?>
+                        <option value=<?= $i ?>><?= $i ?></option>
+                    <?php } ?>
+
+                </select>
+                <button type='submit'>
+                    OK
+                </button>
             </form>
+
+
             <form method='POST' action=''>
                 <button type='submit' name='relancer_jeu' value='12'>
                     Reinitialiser memory
@@ -84,8 +91,8 @@ if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
         <div class="container_jeu">
             <?php
 
-            if (isset($_SESSION['grille'])) {
-                foreach ($_SESSION['grille'] as $key => $value) {
+            if (isset($_SESSION['grille'][0])) {
+                foreach ($_SESSION['grille'][0] as $key => $value) {
 
 
 
@@ -109,8 +116,15 @@ if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
             <?php
                     }
                 }
+                /*          echo "<pre>";
+
+                var_dump($_SESSION['verif']);
+                echo "</pre>"; */
+
+
+
                 if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
-                    $_SESSION['grille'][$_POST['position']]->position_initial_deux_cartesv2($_SESSION['verif']);
+                    $_SESSION['grille'][0][$_POST['position']]->position_initial_deux_cartesv2($_SESSION['verif']);
                     $_SESSION['refresh'] = 0;
                     unset($_SESSION['verif']);
                 }

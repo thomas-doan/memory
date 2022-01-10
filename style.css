@@ -28,7 +28,8 @@
           padding: 2rem;
       }
       
-      .boutons_jeux form button {
+      .boutons_jeux form button,
+      form select option {
           cursor: pointer;
           border: none;
           border-radius: 5%;
