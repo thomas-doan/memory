@@ -20,8 +20,8 @@ class Grille extends Card
 
         for ($i = 0; $i < ($this->taille_grille); $i++) {
             shuffle($tblimage);
-            ${'var' . $i} = new Card(1, './img_chiffre/dos.png', "./img_chiffre/$tblimage[0].png", $i);
-            ${'var2' . $i} = new Card(1, './img_chiffre/dos.png', "./img_chiffre/$tblimage[0].png", $i);
+            ${'var' . $i} = new Card(1, './img/dos.png', "./img/$tblimage[0].png", $i);
+            ${'var2' . $i} = new Card(1, './img/dos.png', "./img/$tblimage[0].png", $i);
             array_push($tableau_objets, ${'var' . $i}, ${'var2' . $i});
             unset($tblimage[0]);
             shuffle($tableau_objets);

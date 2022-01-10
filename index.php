@@ -1,6 +1,5 @@
 <?php
-require('Card.php');
-require('fonction.php');
+require('./controller/Card.php');
 session_start();
 
 
@@ -37,7 +36,7 @@ if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./public/css/style.css">
 </head>
 
 <body>
@@ -71,7 +70,6 @@ if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
                 </button>
             </form>
 
-
             <form method='POST' action=''>
                 <button type='submit' name='relancer_jeu' value='12'>
                     Reinitialiser memory
@@ -83,8 +81,6 @@ if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
 
             if (isset($_SESSION['grille'])) {
                 foreach ($_SESSION['grille'] as $key => $value) {
-
-
 
                     if ($value->etat_carte === 1) { ?>
                         <div>
@@ -106,12 +102,6 @@ if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
             <?php
                     }
                 }
-                /*          echo "<pre>";
-
-                var_dump($_SESSION['verif']);
-                echo "</pre>"; */
-
-
 
                 if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
                     $_SESSION['grille'][$_POST['position']]->position_initial_deux_cartesv2($_SESSION['verif']);
@@ -120,14 +110,8 @@ if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
                 }
             };
 
-
-
-
-
             ?>
         </div>
-
-
 
 
     </main>

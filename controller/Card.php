@@ -19,11 +19,8 @@ class Card
         $this->id_carte = $id_carte;
     }
 
-    /*  */
-
     public function verifier_couple_carte($carte_cible, $position_grille)
     {
-
 
         $id_carte_objet = $carte_cible->id_carte;
         $_SESSION['verif']["$id_carte_objet"] = $carte_cible;
@@ -33,7 +30,6 @@ class Card
 
             $this->voir_carte($_SESSION['verif'], $id_carte_objet);
         } elseif (count($_SESSION['verif']) == 2) {
-
 
 
             foreach ($_SESSION['verif'] as $value) {
@@ -60,8 +56,6 @@ class Card
 
         $carte_a_retourner["$position_specifique_grille"]->etat_carte = 0;
     }
-
-
 
     public function position_initial_deux_cartesv2($verif)
     {
