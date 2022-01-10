@@ -33,43 +33,15 @@ if (isset($_POST['relancer_jeu'])) {
 
 if (isset($_POST['submit'])) {
 
-    $test = $_SESSION['grille'][$_POST['position']]->verifier_couple_carte($_SESSION['grille'][$_POST['position']]);
-    /*    echo "<pre>";
-    var_dump($test);
-    echo "</pre>";
-    echo "<br>";
-    echo "<br>"; */
+    $test = $_SESSION['grille'][$_POST['position']]->verifier_couple_carte($_SESSION['grille'][$_POST['position']], $_POST['position']);
+}
 
-    /*         $_SESSION['grille'][$_POST['position']]->retourner_carte($_SESSION['grille'][$_POST['position']]);
- */
-    /*   echo "<pre>";
-    var_dump($_SESSION['verif']);
-    echo "</pre>";
-    echo "<br>";
-    echo "<pre>";
-    var_dump(count($_SESSION['verif']));
-    echo $_SESSION['verif'][0]->face_carte;
-    echo "</pre>"; */
+if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
 
-    /*    $tableau = [];
-    foreach ($_SESSION['verif'] as $value) {
-        array_push($tableau, $value->face_carte);
-    }
-    if ($tableau[0] == $tableau[1]) {
-        echo "PAIR OK";
-    } else {
-        echo "PAIR NON CORRESPONDANTE";
-    } */
-
-    /* echo "<br>";
-    var_dump($tableau);
-    echo "<br>"; */
+    header("refresh: 1; index.php");
 }
 
 
-/* var_dump($_SESSION['grille'][$_POST['position']]); */
-
-/* var_dump($_SESSION['verif']); */
 ?>
 
 <!DOCTYPE html>
@@ -125,19 +97,27 @@ if (isset($_POST['submit'])) {
                                 <input type="hidden" name="etat_carte" value="<?= $value->etat_carte ?>" />
                                 <input type="hidden" name="face_carte" value="<?= $value->face_carte ?>" />
                                 <button type='submit' name="submit">
-                                    <img src="<?= $value->dos_carte ?>" alt="carte de dos" width='60vw' height='60vh'>
+                                    <img src="<?= $value->dos_carte ?>" alt="carte de dos" width='60vw' height='60vh' class="dos">
                                 </button>
                             </form>
                         </div>
-                    <?php } else { ?>
+                    <?php } elseif ($value->etat_carte === 0) { ?>
                         <div>
-                            <img src="<?= $value->face_carte ?>" alt="face de dos" width='60vw' height='60vh'>
+                            <img src="<?= $value->face_carte ?>" alt="carte de face" width='60vw' height='60vh'>
                         </div>
 
             <?php
                     }
                 }
+                if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
+                    $_SESSION['grille'][$_POST['position']]->position_initial_deux_cartesv2($_SESSION['verif']);
+                    $_SESSION['refresh'] = 0;
+                    unset($_SESSION['verif']);
+                }
             };
+
+
+
 
 
             ?>

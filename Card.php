@@ -19,21 +19,18 @@ class Card
         $this->id_carte = $id_carte;
     }
 
-    public function retourner_carte($carte_cible)
-    {
-        $carte_cible->etat_carte = 0;
-    }
+    /*  */
 
-    public function verifier_couple_carte($carte_cible)
+    public function verifier_couple_carte($carte_cible, $position_grille)
     {
 
-        $id_carte = $carte_cible->id_carte;
-        $_SESSION['verif']["$id_carte"] = $carte_cible;
+        $id_carte_objet = $carte_cible->id_carte;
+        $_SESSION['verif']["$id_carte_objet"] = $carte_cible;
 
         $tableau_face_carte = [];
         if (count($_SESSION['verif']) == 1) {
 
-            $_SESSION['verif']["$id_carte"]->etat_carte = 0;
+            $this->voir_carte($_SESSION['verif'], $id_carte_objet);
         } elseif (count($_SESSION['verif']) == 2) {
 
             foreach ($_SESSION['verif'] as $value) {
@@ -44,26 +41,31 @@ class Card
 
             if ($tableau_face_carte[0] == $tableau_face_carte[1]) {
 
-
-                $_SESSION['verif']["$id_carte"]->etat_carte = 0;
+                $_SESSION['verif']["$id_carte_objet"]->etat_carte = 0;
                 unset($_SESSION['verif']);
-                header("Refresh:0; ./index.php");
-                exit();
-            } else {
+            } elseif ($tableau_face_carte[0] !== $tableau_face_carte[1]) {
 
-
-                $_SESSION['verif']["$id_carte"]->etat_carte = 0;
-                header("Refresh:2 ; ./index.php");
-
-
-                foreach ($_SESSION['verif'] as $value) {
-
-                    $_SESSION['verif']["$value->id_carte"]->etat_carte = 1;
-                }
-
-                header("Refresh:1 ; ./index.php");
-                unset($_SESSION['verif']);
+                $this->voir_carte($_SESSION['grille'], $position_grille);
+                $_SESSION['refresh'] = 1;
             }
+        }
+    }
+
+
+    public function voir_carte($carte_a_retourner, $position_specifique_grille)
+    {
+
+        $carte_a_retourner["$position_specifique_grille"]->etat_carte = 0;
+    }
+
+
+
+    public function position_initial_deux_cartesv2($verif)
+    {
+
+        foreach ($verif as $value) {
+
+            $verif["$value->id_carte"]->etat_carte = 1;
         }
     }
 }
