@@ -48,7 +48,7 @@ class Card
                 unset($_SESSION['verif']);
             } elseif ($tableau_face_carte[0] !== $tableau_face_carte[1]) {
 
-                $this->voir_carte($_SESSION['grille'][0], $position_grille);
+                $this->voir_carte($_SESSION['grille'], $position_grille);
                 $_SESSION['refresh'] = 1;
             }
         }
