@@ -1,12 +1,15 @@
 <?php
-require('./controller/Card.php');
-session_start();
+require '../vendor/autoload.php';
 
+echo $_GET['url'];
+
+session_start();
 
 if (!isset($_SESSION['grille']) && isset($_POST['initialiser_jeu'])) {
 
     $grille_jeu = new Grille($_POST['initialiser_jeu']);
     $grille_jeu->melange_cartes_grille();
+    $_SESSION['grille_jeu'] = $grille_jeu;
 }
 
 if (isset($_POST['relancer_jeu'])) {
@@ -23,6 +26,10 @@ if (isset($_POST['submit'])) {
 if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
 
     header("refresh: 1; index.php");
+}
+
+if (isset($_SESSION['grille'])) {
+    $_SESSION['grille_jeu']->victoire();
 }
 
 
@@ -54,32 +61,43 @@ if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
     <main>
 
         <div class="boutons_jeux">
+            <?php if (!isset($_SESSION['grille'])) { ?>
 
-            <form method='POST' action=''>
-                <select name="initialiser_jeu">
 
-                    <option value="">Choisir vos nombres de paires</option>
-                    <?php for ($i = 3; $i <= 12; $i++) {
-                    ?>
-                        <option value=<?= $i ?>><?= $i ?></option>
-                    <?php } ?>
+                <form method='POST' action=''>
+                    <select name="initialiser_jeu">
 
-                </select>
-                <button type='submit'>
-                    OK
-                </button>
-            </form>
+                        <option value="">Choisir vos nombres de paires</option>
+                        <?php for ($i = 3; $i <= 12; $i++) {
+                        ?>
+                            <option value=<?= $i ?>><?= $i ?></option>
+                        <?php } ?>
 
-            <form method='POST' action=''>
-                <button type='submit' name='relancer_jeu' value='12'>
-                    Reinitialiser memory
-                </button>
-            </form>
+                    </select>
+                    <button type='submit'>
+                        OK
+                    </button>
+                </form>
+
+
+            <?php
+            }
+            if (isset($_SESSION['grille'])) { ?>
+                <form method='POST' action=''>
+                    <button type='submit' name='relancer_jeu' value='12'>
+                        Reinitialiser memory
+                    </button>
+                </form>
+            <?php
+            } ?>
+
         </div>
         <div class="container_jeu">
             <?php
 
             if (isset($_SESSION['grille'])) {
+
+
                 foreach ($_SESSION['grille'] as $key => $value) {
 
                     if ($value->etat_carte === 1) { ?>
@@ -112,6 +130,17 @@ if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
 
             ?>
         </div>
+        <?php
+
+        if (isset($_SESSION['victoire']) && isset($_SESSION['chrono_debut_jeu'])) { ?>
+
+            <div id="victoire">
+                <p><?php $_SESSION['grille_jeu']->temps_realise_victoire() ?> </p>
+            </div>
+        <?php }
+        ?>
+
+
 
 
     </main>

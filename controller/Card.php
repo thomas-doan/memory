@@ -1,5 +1,5 @@
 <?php
-require('Grille.php');
+
 class Card
 {
     //etat 1 = dos - etait 2 = retourner int

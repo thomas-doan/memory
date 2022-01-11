@@ -1,0 +1,16 @@
+{
+    "name": "thomas/projet_memory",
+    "description": "memory game",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "memory\\": "app/"
+            "Database\\": "database/"
+        }
+    },
+    "authors": [{
+        "name": "thomas-doan",
+        "email": "thomas.doan@laplateforme.io"
+    }],
+    "require": {}
+}
