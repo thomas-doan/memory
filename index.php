@@ -1,7 +1,6 @@
 <?php
-require '../vendor/autoload.php';
-
-echo $_GET['url'];
+require('./Controller/Card.php');
+require('./Controller/fonction.php');
 
 session_start();
 
@@ -43,7 +42,7 @@ if (isset($_SESSION['grille'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./public/css/style.css">
+    <link rel="stylesheet" href="./public/css/accueil.css">
 </head>
 
 <body>
