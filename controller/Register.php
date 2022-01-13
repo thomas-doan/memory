@@ -1,4 +1,5 @@
 <?php
+require(__DIR__ . "/../Database/DB_connection.php");
 
 class Register
 {
@@ -8,7 +9,7 @@ class Register
     {
 
         $login = $_POST['login'];
-          $password = $_POST['password']; 
+        $password = $_POST['password']; 
         $req = "SELECT * FROM utilisateurs WHERE login = :login";
         $req_prepare = Database::connexion_db()->prepare($req);
         $req_prepare->execute(array(
@@ -29,7 +30,7 @@ class Register
         }
     } */
 
-    public function UserRegister($login, $password)
+    public function register_utilisateur($login, $password)
     {
         //inscription utilisateurs
 
@@ -49,7 +50,7 @@ class Register
     }
 
 
-    public function Login_exist($login)
+    public function verif_login($login)
     {
         //Login déjà pris
 

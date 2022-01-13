@@ -1,5 +1,5 @@
 <?php
-require('Timer.php');
+
 
 class Grille
 {

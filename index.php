@@ -41,7 +41,8 @@ if (isset($_SESSION['grille'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Memory Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./public/css/accueil.css">
     <link rel="stylesheet" href="./public/css/header.css">
 </head>
@@ -51,10 +52,12 @@ if (isset($_SESSION['grille'])) {
     <header>
         <nav>
             <ul class="navigation">
-                <li><a href="#banner">Home</a></li>
-                <li><a href="#about">Top10</a></li>
-                <li><a href="#menu">Connexion</a></li>
-                <li><a href="#expert">inscription</a></li>
+                <li><a href="">Home</a></li>
+                <li><a href="">Top10</a></li>
+                <li><a href="./View/profil.php">Profil</a></li>
+                <li><a href="./View/connexion.php">Connexion</a></li>
+                <li><a href="./View/inscription.php">Inscription</a></li>
+                <li><a href="./View/deconnexion.php">Deconnexion</a></li>
             </ul>
         </nav>
     </header>
