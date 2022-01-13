@@ -1,6 +1,6 @@
 <?php
 require('./Controller/Card.php');
-require('./Controller/fonction.php');
+require('./Controller/Grille.php');
 
 session_start();
 
@@ -43,6 +43,7 @@ if (isset($_SESSION['grille'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./public/css/accueil.css">
+    <link rel="stylesheet" href="./public/css/header.css">
 </head>
 
 <body>
