@@ -10,14 +10,32 @@
      .form_register {
          margin: 2rem auto;
          padding: 1rem;
-         background-color: aqua;
+         background: rgb(34, 193, 195);
+         background: linear-gradient(10deg, rgba(34, 193, 195, 1) 0%, rgba(123, 190, 156, 1) 50%, rgba(168, 228, 212, 0.909) 61%);
          width: 30%;
          display: flex;
          flex-direction: column;
          align-items: center;
+         border-radius: .25rem;
+     }
+     
+     .form_register h2 {
+         color: rgb(54, 126, 54);
      }
      
      .form_register form {
          display: flex;
          flex-direction: column;
+         margin: 1rem;
+         border: none;
+     }
+     
+     .form_register input,
+     button {
+         margin: 1rem;
+         padding: 1rem;
+         border: none;
+         border-radius: .25rem;
+         color: rgb(54, 126, 54);
+         cursor: pointer;
      }
