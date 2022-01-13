@@ -6,8 +6,8 @@ class Securite
     public static function secureHTML($chaine)
     {
         //première protection  contre injection sql.
-        $chaine  = strip_tags($input);
-        $resultat = htmlentities($chaine);
+        $resultat  = strip_tags($chaine);
+        $resultat = htmlentities($resultat);
         $resultat = htmlspecialchars($resultat);
 
         return $resultat;

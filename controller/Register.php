@@ -42,21 +42,21 @@ class Register
             //Hash password
             $password_hash = password_hash($password_secure, PASSWORD_BCRYPT);
 
-            $req = "INSERT INTO utilisateurs (login, password) VALUES (:login, :prenom, :nom, :email, :password )";
+            $req = "INSERT INTO utilisateurs (login, prenom, nom, email, password) VALUES (:login, :prenom, :nom, :email, :password )";
             $stmt = Database::connect_db()->prepare($req);
             $stmt->execute(array(
                 ":login" => $login_secure,
                 ":prenom" => $prenom_secure,
                 ":nom" => $nom_secure,
                 ":email" => $email_secure,
-                ":password" => $password_hash,
+                ":password" => $password_hash
             ));
             Toolbox::ajouterMessageAlerte("Le compte est créé!", Toolbox::COULEUR_VERTE);
             header("Location: ../index.php");
             exit();
         }
         if (Register::verif_email($email_secure) == true) {
-            Toolbox::ajouterMessageAlerte("Le login est déjà utilisé !", Toolbox::COULEUR_ROUGE);
+            Toolbox::ajouterMessageAlerte("L'email est déjà utilisé !", Toolbox::COULEUR_ROUGE);
         }
     }
 

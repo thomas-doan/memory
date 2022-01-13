@@ -2,8 +2,15 @@
 require('../Controller/Register.php');
 require('../Controller/Toolbox.php');
 require('../Controller/Securite.php');
-session_start()
+session_start();
 
+if (isset($_POST['submit'])) {
+    if (!empty($_POST['login']) && !empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['email']) && !empty($_POST['password'])) {
+        Register::register_utilisateur($_POST['login'], $_POST['prenom'], $_POST['nom'], $_POST['email'], $_POST['password']);
+    } else {
+        Toolbox::ajouterMessageAlerte("Remplir tous les champs.", Toolbox::COULEUR_ROUGE);
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +42,7 @@ session_start()
 
         <section>
             <div class="form_register">
+                <?php require_once(__DIR__ . '/gestion_erreur.php'); ?>
 
                 <h2>Inscription</h2>
 
@@ -52,7 +60,7 @@ session_start()
 
                     <button type="submit" name="submit">Valider</button>
                 </form>
-                <?php require_once(__DIR__ . '/gestion_erreur.php'); ?>
+
             </div>
 
         </section>
