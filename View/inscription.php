@@ -32,6 +32,32 @@ session_start()
     </header>
     <main>
 
+        <section>
+            <div class="form_register">
+
+                <h2>Inscription</h2>
+
+                <form action="inscription.php" method="post">
+
+                    <input type="text" name="login" placeholder="Login" autocomplete="off">
+
+                    <input type="text" name="prenom" placeholder="Prenom" autocomplete="off">
+
+                    <input type="text" name="nom" placeholder="Nom" autocomplete="off">
+
+                    <input type="text" name="email" placeholder="Email" autocomplete="off">
+
+                    <input type="password" name="password" placeholder="Votre mot de passe" autocomplete="off">
+
+
+
+                    <button type="submit" name="submit">Valider</button>
+            </div>
+            </form>
+        </section>
+
+        </form>
+        </div>
 
 
 

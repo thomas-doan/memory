@@ -30,7 +30,7 @@ class Register
         }
     } */
 
-    /* public function register_utilisateur($login, $password)
+    public function register_utilisateur($login, $password)
     {
         //inscription utilisateurs
 
@@ -47,10 +47,10 @@ class Register
         $register->execute();
 
         return $register;
-    } */
+    }
 
 
-    /*  public function verif_login($login)
+    public function verif_login($login)
     {
         //Login déjà pris
 
@@ -64,5 +64,5 @@ class Register
         } else {
             return false;
         }
-    } */
+    }
 }
