@@ -1,6 +1,8 @@
 <?php
 require('./Controller/Card.php');
 require('./Controller/Grille.php');
+require('./Controller/Securite.php');
+require('./Controller/User.php');
 
 session_start();
 
@@ -31,9 +33,16 @@ if (isset($_SESSION['grille'])) {
     $_SESSION['grille_jeu']->victoire();
 }
 
-echo "<pre>";
-var_dump($_SESSION['profil']);
-echo "</pre>";
+if (isset($_SESSION['profil'])) {
+    $id_session = $_SESSION['profil']['id'];
+    $email_session = $_SESSION['profil']['email'];
+    $_SESSION['objet_utilisateur'] = new User($email_session, $id_session);
+}
+
+
+/* echo "<pre>";
+var_dump($_SESSION['objet_utilisateur']);
+echo "</pre>"; */
 
 ?>
 
@@ -58,10 +67,15 @@ echo "</pre>";
             <ul class="navigation">
                 <li><a href="">Home</a></li>
                 <li><a href="">Top10</a></li>
-                <li><a href="./View/profil.php">Profil</a></li>
-                <li><a href="./View/connexion.php">Connexion</a></li>
-                <li><a href="./View/inscription.php">Inscription</a></li>
-                <li><a href="./View/deconnexion.php">Deconnexion</a></li>
+                <?php if (Securite::estConnecte()) : ?>
+                    <li><a href="./View/profil.php">Profil</a></li>
+                    <li><a href="./View/deconnexion.php">Deconnexion</a></li>
+                <?php endif; ?>
+                <?php if (!Securite::estConnecte()) : ?>
+                    <li><a href="./View/connexion.php">Connexion</a></li>
+                    <li><a href="./View/inscription.php">Inscription</a></li>
+                <?php endif; ?>
+
             </ul>
         </nav>
     </header>

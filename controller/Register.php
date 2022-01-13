@@ -14,7 +14,7 @@ class Register
         if (Register::verif_email($email_secure) == true) {
             $resultat = Register::verif_email($email_secure);
             if (password_verify($password_secure, $resultat['password'])) {
-                $_SESSION['profil']['login'] = $resultat['login'];
+                $_SESSION['profil']['email'] = $resultat['email'];
                 $_SESSION['profil']['id'] = $resultat['id_utilisateur'];
                 Toolbox::ajouterMessageAlerte("Connexion faite.", Toolbox::COULEUR_VERTE);
                 header("Location: ../index.php");
