@@ -81,12 +81,6 @@ class Grille
 
     public function reset_session_jeu()
     {
-        /*         $grille = $this->creation_grille();
-        $resultat = $grille;
-        $_SESSION['grille'] = $resultat; */
-        session_unset();
-        /*   return $resultat;
-
-         shuffle($grille); */
+        unset($_SESSION['grille']);
     }
 }

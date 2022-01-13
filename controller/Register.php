@@ -5,11 +5,11 @@ class Register
 {
 
 
-    /*     public static function Connexion()
+    public static function Connexion()
     {
 
         $login = $_POST['login'];
-        $password = $_POST['password']; 
+        $password = $_POST['password'];
         $req = "SELECT * FROM utilisateurs WHERE login = :login";
         $req_prepare = Database::connexion_db()->prepare($req);
         $req_prepare->execute(array(
@@ -28,7 +28,7 @@ class Register
 
             $msg =  'identifiant ou mot de pass incorrect';
         }
-    } */
+    }
 
     public static function register_utilisateur($login, $prenom, $nom, $email, $password)
     {
