@@ -1,3 +1,19 @@
+<?php
+require('../Controller/Register.php');
+require('../Controller/Toolbox.php');
+require('../Controller/Securite.php');
+session_start();
+
+if (isset($_POST['submit'])) {
+    if (!empty($_POST['email']) && !empty($_POST['password'])) {
+        Register::connexion($_POST['email'], $_POST['password']);
+    } else {
+        Toolbox::ajouterMessageAlerte("Remplir tous les champs.", Toolbox::COULEUR_ROUGE);
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,10 +44,11 @@
 
         <section>
             <div class="form_register">
+                <?php require_once(__DIR__ . '/gestion_erreur.php'); ?>
 
-                <h2>Inscription</h2>
+                <h2>connexion</h2>
 
-                <form action="inscription.php" method="post">
+                <form action="connexion.php" method="post">
 
 
                     <input type="text" name="email" placeholder="Email" autocomplete="off">

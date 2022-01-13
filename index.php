@@ -31,6 +31,9 @@ if (isset($_SESSION['grille'])) {
     $_SESSION['grille_jeu']->victoire();
 }
 
+echo "<pre>";
+var_dump($_SESSION['profil']);
+echo "</pre>";
 
 ?>
 

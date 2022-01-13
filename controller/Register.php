@@ -5,28 +5,29 @@ class Register
 {
 
 
-    public static function Connexion()
+    public static function connexion($email, $password)
     {
+        $email_secure = Securite::secureHTML($email);
+        $password_secure = Securite::secureHTML($password);
 
-        $login = $_POST['login'];
-        $password = $_POST['password'];
-        $req = "SELECT * FROM utilisateurs WHERE login = :login";
-        $req_prepare = Database::connexion_db()->prepare($req);
-        $req_prepare->execute(array(
-            ":login" => "$login"
-        ));
-        $resultat = $req_prepare->fetch();
-        return $resultat;
-        $_SESSION['login'] = $resultat['login'];
-        $_SESSION['id'] = $resultat['id'];
-
-        if (password_verify($_POST['password'], $resultat['password'])) {
-
-            $msg2 =  'vous êtes connecté';
-            header("refresh:2;url=index.php");
+        //requete SQL
+        if (Register::verif_email($email_secure) == true) {
+            $resultat = Register::verif_email($email_secure);
+            if (password_verify($password_secure, $resultat['password'])) {
+                $_SESSION['profil']['login'] = $resultat['login'];
+                $_SESSION['profil']['id'] = $resultat['id_utilisateur'];
+                Toolbox::ajouterMessageAlerte("Connexion faite.", Toolbox::COULEUR_VERTE);
+                header("Location: ../index.php");
+                exit();
+            } else {
+                Toolbox::ajouterMessageAlerte("Mdp incorrect.", Toolbox::COULEUR_ROUGE);
+                header("Location: ./connexion.php");
+                exit();
+            }
         } else {
-
-            $msg =  'identifiant ou mot de pass incorrect';
+            Toolbox::ajouterMessageAlerte("Email incorrect.", Toolbox::COULEUR_ROUGE);
+            header("Location: ./connexion.php");
+            exit();
         }
     }
 
