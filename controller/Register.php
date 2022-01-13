@@ -30,39 +30,48 @@ class Register
         }
     } */
 
-    public function register_utilisateur($login, $password)
+    public static function register_utilisateur($login, $prenom, $nom, $email, $password)
     {
-        //inscription utilisateurs
+        //secure les post d'injection sql ou script
+        $login_secure = Securite::secureHTML($login);
+        $prenom_secure = Securite::secureHTML($prenom);
+        $nom_secure = Securite::secureHTML($nom);
+        $email_secure = Securite::secureHTML($email);
+        $password_secure = Securite::secureHTML($password);
+        if (Register::verif_email($email_secure) == false) {
+            //Hash password
+            $password_hash = password_hash($password_secure, PASSWORD_BCRYPT);
 
-        //Hash password
-        $password = password_hash($password, PASSWORD_BCRYPT);
-
-        //Requete SQL
-        $register = Database::connexion_db()->prepare("INSERT INTO utilisateurs (login, password) VALUES (:login, :password)");
-
-
-        $register->bindValue(':login', $login, PDO::PARAM_STR);
-        $register->bindValue(':password', $password, PDO::PARAM_STR);
-        //PDO::PARAM_STR (int) Représente les types de données CHAR, VARCHAR ou les autres types de données sous forme de chaîne de caractères SQL.
-        $register->execute();
-
-        return $register;
+            $req = "INSERT INTO utilisateurs (login, password) VALUES (:login, :prenom, :nom, :email, :password )";
+            $stmt = Database::connect_db()->prepare($req);
+            $stmt->execute(array(
+                ":login" => $login_secure,
+                ":prenom" => $prenom_secure,
+                ":nom" => $nom_secure,
+                ":email" => $email_secure,
+                ":password" => $password_hash,
+            ));
+            Toolbox::ajouterMessageAlerte("Le compte est créé!", Toolbox::COULEUR_VERTE);
+            header("Location: ../index.php");
+            exit();
+        }
+        if (Register::verif_email($email_secure) == true) {
+            Toolbox::ajouterMessageAlerte("Le login est déjà utilisé !", Toolbox::COULEUR_ROUGE);
+        }
     }
 
-
-    public function verif_login($login)
+    public static function verif_email($email)
     {
-        //Login déjà pris
+        //secure les post d'injection sql ou script
+        $email_secure = Securite::secureHTML($email);
 
-        $login = $_POST['login'];
-        //Database::connexion_db()-> appel la bdd pour la requete 
-        $result = Database::connexion_db()->prepare("SELECT * FROM utilisateurs WHERE login = ?");
-        $result->execute(array($login));
-        $user_data = $result->fetch();
-        if ($user_data) {
-            return true; // si l'utilisateurs est déjà pris return true
-        } else {
-            return false;
-        }
+        $req = "SELECT * FROM utilisateurs WHERE email = :email";
+        $stmt = Database::connect_db()->prepare($req);
+        $stmt->execute(array(
+            ":email" => $email_secure
+        ));
+        $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $resultat;
     }
 }
