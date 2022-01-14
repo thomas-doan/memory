@@ -1,8 +1,10 @@
 <?php
-require('./Controller/Card.php');
-require('./Controller/Grille.php');
-require('./Controller/Securite.php');
-require('./Controller/User.php');
+require_once('./Controller/Card.php');
+require_once('./Controller/Grille.php');
+require_once('./Controller/Securite.php');
+require_once('./Controller/User.php');
+require_once('./Database/DB_connection.php');
+
 
 session_start();
 
@@ -33,6 +35,7 @@ if (isset($_SESSION['grille'])) {
     $_SESSION['grille_jeu']->victoire();
 }
 
+//creation de l'objet User
 if (isset($_SESSION['profil'])) {
     $id_session = $_SESSION['profil']['id'];
     $email_session = $_SESSION['profil']['email'];
@@ -152,7 +155,7 @@ echo "</pre>"; */
             ?>
         </div>
         <?php
-
+        //affiche le temps réalisé.
         if (isset($_SESSION['victoire']) && isset($_SESSION['chrono_debut_jeu'])) { ?>
 
             <div id="victoire">

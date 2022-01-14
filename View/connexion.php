@@ -1,7 +1,9 @@
 <?php
-require('../Controller/Register.php');
-require('../Controller/Toolbox.php');
-require('../Controller/Securite.php');
+require_once('../Model/Register_Login_model.php');
+require_once('../Controller/Toolbox.php');
+require_once('../Controller/Securite.php');
+require_once('../Database/DB_connection.php');
+
 session_start();
 
 if (isset($_POST['submit'])) {

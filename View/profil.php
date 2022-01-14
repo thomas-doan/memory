@@ -1,3 +1,20 @@
+<?php
+require_once('../Controller/Card.php');
+require_once('../Controller/Grille.php');
+require_once('../Controller/Securite.php');
+
+require_once('../Database/DB_connection.php');
+
+require_once('../Controller/User.php');
+session_start();
+
+if (isset($_SESSION['objet_utilisateur'])) {
+    $objet_user_info = $_SESSION['objet_utilisateur']->info_user();
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,11 +41,28 @@
         </nav>
     </header>
     <main>
+        <section>
+            <div class="form_profil">
+                <?php require_once(__DIR__ . '/gestion_erreur.php'); ?>
 
+                <h2>Mon profil : </h2>
 
+                <form action="profil.php" method="post">
 
+                    <input type="text" name="login" value="<?= $objet_user_info['login'] ?>" autocomplete="off">
 
+                    <input type="text" name="prenom" value="<?= $objet_user_info['prenom'] ?>" autocomplete="off">
 
+                    <input type="text" name="nom" value="<?= $objet_user_info['nom'] ?>" autocomplete="off">
+
+                    <input type="text" name="email" value="<?= $objet_user_info['email'] ?>" autocomplete="off">
+
+                    <button type="submit" name="submit">Modifier</button>
+                </form>
+
+            </div>
+
+        </section>
     </main>
     <footer>
 

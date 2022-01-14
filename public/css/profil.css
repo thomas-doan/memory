@@ -6,3 +6,74 @@
          padding: 0;
          font-family: 'Noto', sans-serif;
      }
+     
+     * {
+         margin: 0;
+         padding: 0;
+         font-family: 'Noto', sans-serif;
+     }
+     
+     .form_profil {
+         margin: 2rem auto;
+         padding: 1rem;
+         background: rgb(34, 193, 195);
+         background: linear-gradient(10deg, rgba(34, 193, 195, 1) 0%, rgba(123, 190, 156, 1) 50%, rgba(168, 228, 212, 0.909) 61%);
+         width: 30%;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         border-radius: .25rem;
+     }
+     
+     .form_profil h2 {
+         color: rgb(54, 126, 54);
+     }
+     
+     .form_profil form {
+         display: flex;
+         flex-direction: column;
+         width: 100%;
+         border: none;
+         align-items: center;
+     }
+     
+     .form_profil input,
+     button {
+         margin-top: 1rem;
+         margin-bottom: 1rem;
+         padding-top: 1rem;
+         padding-bottom: 1rem;
+         width: 80%;
+         border: none;
+         border-radius: .25rem;
+         color: rgb(54, 126, 54);
+         cursor: pointer;
+     }
+     
+     @media (max-width: 600px) {
+         .form_profil {
+             margin: 2rem auto;
+             padding: 1rem;
+             background: rgb(34, 193, 195);
+             background: linear-gradient(10deg, rgba(34, 193, 195, 1) 0%, rgba(123, 190, 156, 1) 50%, rgba(168, 228, 212, 0.909) 61%);
+             width: 50%;
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             border-radius: .25rem;
+         }
+     }
+     
+     @media (max-width: 400px) {
+         .form_profil {
+             margin: 2rem auto;
+             padding: 1rem;
+             background: rgb(34, 193, 195);
+             background: linear-gradient(10deg, rgba(34, 193, 195, 1) 0%, rgba(123, 190, 156, 1) 50%, rgba(168, 228, 212, 0.909) 61%);
+             width: 70%;
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             border-radius: .25rem;
+         }
+     }

@@ -1,18 +1,18 @@
 <?php
-require(__DIR__ . "/../Database/DB_connection.php");
+
 
 class Register
 {
 
-
     public static function connexion($email, $password)
-    {
+    {   //secure les post d'injection sql ou script
         $email_secure = Securite::secureHTML($email);
         $password_secure = Securite::secureHTML($password);
 
-        //requete SQL
-        if (Register::verif_email($email_secure) == true) {
-            $resultat = Register::verif_email($email_secure);
+        //verification email déjà existent
+        if (Register::info_user($email_secure) == true) {
+            //requete SQL
+            $resultat = Register::info_user($email_secure);
             if (password_verify($password_secure, $resultat['password'])) {
                 $_SESSION['profil']['email'] = $resultat['email'];
                 $_SESSION['profil']['id'] = $resultat['id_utilisateur'];
@@ -39,7 +39,7 @@ class Register
         $nom_secure = Securite::secureHTML($nom);
         $email_secure = Securite::secureHTML($email);
         $password_secure = Securite::secureHTML($password);
-        if (Register::verif_email($email_secure) == false) {
+        if (Register::info_user($email_secure) == false) {
             //Hash password
             $password_hash = password_hash($password_secure, PASSWORD_BCRYPT);
 
@@ -56,16 +56,17 @@ class Register
             header("Location: ../index.php");
             exit();
         }
-        if (Register::verif_email($email_secure) == true) {
+        if (Register::info_user($email_secure) == true) {
             Toolbox::ajouterMessageAlerte("L'email est déjà utilisé !", Toolbox::COULEUR_ROUGE);
         }
     }
 
-    public static function verif_email($email)
+    public static function info_user($email)
     {
         //secure les post d'injection sql ou script
         $email_secure = Securite::secureHTML($email);
 
+        //requete sql
         $req = "SELECT * FROM utilisateurs WHERE email = :email";
         $stmt = Database::connect_db()->prepare($req);
         $stmt->execute(array(
