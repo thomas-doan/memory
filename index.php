@@ -82,85 +82,101 @@ echo "</pre>"; */
     </header>
     <main>
         <?php require_once(__DIR__ . '/View/gestion_erreur.php'); ?>
-        <div class="boutons_jeux">
-            <?php if (!isset($_SESSION['grille'])) { ?>
+        <?php if (isset($_SESSION['profil'])) { ?>
+            <div class="boutons_jeux">
+
+                <?php if (!isset($_SESSION['grille'])) { ?>
 
 
-                <form method='POST' action=''>
-                    <select name="initialiser_jeu">
+                    <form method='POST' action=''>
+                        <select name="initialiser_jeu">
 
-                        <option value="">Choisir vos nombres de paires</option>
-                        <?php for ($i = 3; $i <= 12; $i++) {
-                        ?>
-                            <option value=<?= $i ?>><?= $i ?></option>
-                        <?php } ?>
+                            <option value="">Choisir vos nombres de paires</option>
+                            <?php for ($i = 3; $i <= 12; $i++) {
+                            ?>
+                                <option value=<?= $i ?>><?= $i ?></option>
+                            <?php } ?>
 
-                    </select>
-                    <button type='submit'>
-                        OK
-                    </button>
-                </form>
-
-
-            <?php
-            }
-            if (isset($_SESSION['grille'])) { ?>
-                <form method='POST' action=''>
-                    <button type='submit' name='relancer_jeu' value='12'>
-                        Reinitialiser memory
-                    </button>
-                </form>
-            <?php
-            } ?>
-
-        </div>
-        <div class="container_jeu">
-            <?php
-
-            if (isset($_SESSION['grille'])) {
+                        </select>
+                        <button type='submit'>
+                            OK
+                        </button>
+                    </form>
 
 
-                foreach ($_SESSION['grille'] as $key => $value) {
-
-                    if ($value->etat_carte === 1) { ?>
-                        <div>
-                            <form method='POST' action=''>
-                                <input type="hidden" name="position" value="<?= $key ?>" />
-                                <input type="hidden" name="id_carte" value="<?= $value->id_carte ?>" />
-                                <input type="hidden" name="etat_carte" value="<?= $value->etat_carte ?>" />
-                                <input type="hidden" name="face_carte" value="<?= $value->face_carte ?>" />
-                                <button type='submit' name="submit">
-                                    <img src="<?= $value->dos_carte ?>" alt="carte de dos" width='60vw' height='60vh' class="dos">
-                                </button>
-                            </form>
-                        </div>
-                    <?php } elseif ($value->etat_carte === 0) { ?>
-                        <div>
-                            <img src="<?= $value->face_carte ?>" alt="carte de face" width='60vw' height='60vh'>
-                        </div>
-
-            <?php
-                    }
+                <?php
                 }
+                if (isset($_SESSION['grille'])) { ?>
+                    <form method='POST' action=''>
+                        <button type='submit' name='relancer_jeu' value='12'>
+                            Reinitialiser memory
+                        </button>
+                    </form>
+                <?php
+                } ?>
 
-                if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
-                    $_SESSION['grille'][$_POST['position']]->position_initial_deux_cartesv2($_SESSION['verif']);
-                    $_SESSION['refresh'] = 0;
-                    unset($_SESSION['verif']);
-                }
-            };
-
-            ?>
-        </div>
-        <?php
-        //affiche le temps réalisé.
-        if (isset($_SESSION['victoire']) && isset($_SESSION['chrono_debut_jeu'])) { ?>
-
-            <div id="victoire">
-                <p><?php $_SESSION['grille_jeu']->temps_realise_victoire() ?> </p>
             </div>
-        <?php }
-        ?>
+            <div class="container_jeu">
+                <?php
+
+                if (isset($_SESSION['grille'])) {
+
+
+                    foreach ($_SESSION['grille'] as $key => $value) {
+
+                        if ($value->etat_carte === 1) { ?>
+                            <div>
+                                <form method='POST' action=''>
+                                    <input type="hidden" name="position" value="<?= $key ?>" />
+                                    <input type="hidden" name="id_carte" value="<?= $value->id_carte ?>" />
+                                    <input type="hidden" name="etat_carte" value="<?= $value->etat_carte ?>" />
+                                    <input type="hidden" name="face_carte" value="<?= $value->face_carte ?>" />
+                                    <button type='submit' name="submit">
+                                        <img src="<?= $value->dos_carte ?>" alt="carte de dos" width='60vw' height='60vh' class="dos">
+                                    </button>
+                                </form>
+                            </div>
+                        <?php } elseif ($value->etat_carte === 0) { ?>
+                            <div>
+                                <img src="<?= $value->face_carte ?>" alt="carte de face" width='60vw' height='60vh'>
+                            </div>
+
+                <?php
+                        }
+                    }
+
+                    if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
+                        $_SESSION['grille'][$_POST['position']]->position_initial_deux_cartesv2($_SESSION['verif']);
+                        $_SESSION['refresh'] = 0;
+                        unset($_SESSION['verif']);
+                    }
+                };
+
+                ?>
+            </div>
+            <?php
+            //affiche le temps réalisé.
+            if (isset($_SESSION['victoire']) && isset($_SESSION['chrono_debut_jeu'])) { ?>
+
+                <div id="victoire">
+                    <p><?php $_SESSION['grille_jeu']->temps_realise_victoire() ?> </p>
+                </div>
+            <?php }
+        } else { ?>
+            <div class="wrapper">
+                <div class="static-txt">Connectez-vous pour debuter Memory ! <br>avez-vous le cerveau d'un</div>
+                <ul class="dynamic-txts">
+                    <li><span>Enfant</span></li>
+                    <li><span>Adolescent</span></li>
+                    <li><span>Adulte</span></li>
+                    <li><span>Qui suis je ?</span></li>
+                </ul>
+            </div>
+
+
+        <?php
+        } ?>
+
 
 
 
