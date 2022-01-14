@@ -5,6 +5,7 @@ require_once('../Controller/Securite.php');
 require_once('../Controller/Toolbox.php');
 require_once('../Database/DB_connection.php');
 require_once('../Controller/User.php');
+require_once('../Controller/Score.php');
 session_start();
 
 if (!Securite::estConnecte()) {
@@ -25,6 +26,11 @@ if (isset($_POST['submit'])) {
     }
 }
 
+if (isset($_SESSION['profil'])) {
+    $id_session = $_SESSION['profil']['id'];
+
+    $ensemble_score_user = $_SESSION['objet_score']->affiche_score_user($id_session);
+}
 
 ?>
 

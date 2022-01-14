@@ -19,6 +19,7 @@ class Score
 
     public function affiche_score_user($id)
     {
-        $this->Score_model->sql_afficher_score_user($id);
+        $resultat =  $this->Score_model->sql_afficher_score_user($id);
+        return $resultat;
     }
 }

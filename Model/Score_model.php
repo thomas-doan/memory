@@ -16,12 +16,12 @@ class Score_model
 
     public function sql_afficher_score_user($id)
     {
-        $req = "SELECT * FROM score WHERE id_fk_utilisateur = :id ORDER date BY DESC";
+        $req = "SELECT * FROM score WHERE id_fk_utilisateur = :id ORDER BY date DESC";
         $stmt = Database::connect_db()->prepare($req);
         $stmt->execute(array(
             ":id" => $id
         ));
-        $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+        $resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
         return $resultat;
     }
