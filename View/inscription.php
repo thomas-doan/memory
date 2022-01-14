@@ -6,6 +6,10 @@ require_once('../Database/DB_connection.php');
 
 session_start();
 
+if (Securite::estConnecte()) {
+    header('Location:../index.php');
+}
+
 if (isset($_POST['submit'])) {
     if (!empty($_POST['login']) && !empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['email']) && !empty($_POST['password'])) {
         Register::register_utilisateur($_POST['login'], $_POST['prenom'], $_POST['nom'], $_POST['email'], $_POST['password']);

@@ -85,4 +85,9 @@ class User
             exit();
         }
     }
+
+    public function deconnexion()
+    {
+        session_unset();
+    }
 }

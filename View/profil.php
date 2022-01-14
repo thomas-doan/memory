@@ -7,6 +7,10 @@ require_once('../Database/DB_connection.php');
 require_once('../Controller/User.php');
 session_start();
 
+if (!Securite::estConnecte()) {
+    header('Location:../index.php');
+}
+
 //affiche les infos profil
 if (isset($_SESSION['objet_utilisateur'])) {
     $objet_user_info = $_SESSION['objet_utilisateur']->info_user();
