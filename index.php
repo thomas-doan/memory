@@ -4,8 +4,6 @@ require_once('./Controller/Grille.php');
 require_once('./Controller/Securite.php');
 require_once('./Controller/User.php');
 require_once('./Database/DB_connection.php');
-
-
 session_start();
 
 if (!isset($_SESSION['grille']) && isset($_POST['initialiser_jeu'])) {
