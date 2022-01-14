@@ -61,28 +61,53 @@ if (isset($_SESSION['profil'])) {
         </nav>
     </header>
     <main>
-        <section>
-            <div class="form_profil">
-                <?php require_once(__DIR__ . '/gestion_erreur.php'); ?>
+        <div class="container_profil">
+            <section>
+                <div class="form_profil">
+                    <?php require_once(__DIR__ . '/gestion_erreur.php'); ?>
 
-                <h2>Mon profil : </h2>
+                    <h2>Mon profil : </h2>
 
-                <form action="profil.php" method="post">
-                    <label for="login"> Login </label>
-                    <input type="text" name="login" value="<?= $objet_user_info['login'] ?>" autocomplete="off">
-                    <label for="prenom"> Prenom </label>
-                    <input type="text" name="prenom" value="<?= $objet_user_info['prenom'] ?>" autocomplete="off">
-                    <label for="nom"> Nom </label>
-                    <input type="text" name="nom" value="<?= $objet_user_info['nom'] ?>" autocomplete="off">
-                    <label for="email"> Email </label>
-                    <input type="text" name="email" value="<?= $objet_user_info['email'] ?>" autocomplete="off">
+                    <form action="profil.php" method="post">
+                        <label for="login"> Login </label>
+                        <input type="text" name="login" value="<?= $objet_user_info['login'] ?>" autocomplete="off">
+                        <label for="prenom"> Prenom </label>
+                        <input type="text" name="prenom" value="<?= $objet_user_info['prenom'] ?>" autocomplete="off">
+                        <label for="nom"> Nom </label>
+                        <input type="text" name="nom" value="<?= $objet_user_info['nom'] ?>" autocomplete="off">
+                        <label for="email"> Email </label>
+                        <input type="text" name="email" value="<?= $objet_user_info['email'] ?>" autocomplete="off">
 
-                    <button type="submit" name="submit">Modifier</button>
-                </form>
+                        <button type="submit" name="submit">Modifier</button>
+                    </form>
 
-            </div>
+                </div>
 
-        </section>
+            </section>
+            <section>
+                <table>
+                    <caption>Score de Memory</caption>
+
+                    <tr>
+                        <th>Date</th>
+                        <th>temps</th>
+                        <th>Nombre de pair</th>
+                    </tr>
+                    <?php foreach ($ensemble_score_user as $value) { ?>
+
+                        <tr>
+                            <td><?= $value['date'] ?></td>
+                            <td><?= $value['temps_score'] ?>s</td>
+                            <td><?= $value['nombre_pair'] ?></td>
+                        </tr>
+
+                    <?php } ?>
+
+
+                </table>
+            </section>
+        </div>
+
     </main>
     <footer>
 
