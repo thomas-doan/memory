@@ -13,11 +13,12 @@ class Score
         $this->Score_model->sql_envoyer_score($id, $score, $nb_pair);
     }
 
-    /*  public function afficher_top10(){
+    /*   public function afficher_top10(){
     
-    }
-
-    public function affiche_score_user(){
-
     } */
+
+    public function affiche_score_user($id)
+    {
+        $this->Score_model->sql_afficher_score_user($id);
+    }
 }

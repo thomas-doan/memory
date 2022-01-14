@@ -13,4 +13,16 @@ class Score_model
             ":nombre_pair" => $nb_pair,
         ));
     }
+
+    public function sql_afficher_score_user($id)
+    {
+        $req = "SELECT * FROM score WHERE id_fk_utilisateur = :id ORDER date BY DESC";
+        $stmt = Database::connect_db()->prepare($req);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $resultat;
+    }
 }
