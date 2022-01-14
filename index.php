@@ -153,7 +153,8 @@ if (isset($_SESSION['profil'])) {
             </div>
             <?php
             //affiche le temps réalisé.
-            if (isset($_SESSION['victoire']) && isset($_SESSION['chrono_debut_jeu'])) { ?>
+            if (isset($_SESSION['victoire']) && isset($_SESSION['chrono_debut_jeu'])) {
+            ?>
 
                 <div id="victoire">
                     <p><?php $_SESSION['grille_jeu']->temps_realise_victoire() ?> </p>
