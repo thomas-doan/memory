@@ -75,13 +75,13 @@ class Grille
         $_SESSION['resultat_temps_reussite'] = substr($_SESSION['victoire'] -  $_SESSION['chrono_debut_jeu'], 0, 10);
         echo "Victoire, memory réalisé en " . $_SESSION['resultat_temps_reussite'] . " secondes.";
         $_SESSION['objet_score']->envoyer_score($_SESSION['profil']['id'], $_SESSION['resultat_temps_reussite'], $this->taille_grille);
-        unset($_SESSION['victoire']);
-        unset($_SESSION['chrono_debut_jeu']);
-        unset($_SESSION['resultat_temps_reussite']);
     }
 
     public function reset_session_jeu()
     {
+        unset($_SESSION['victoire']);
+        unset($_SESSION['chrono_debut_jeu']);
+        unset($_SESSION['resultat_temps_reussite']);
         unset($_SESSION['grille']);
     }
 }
