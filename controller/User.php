@@ -30,60 +30,57 @@ class User
         $nom_secure = Securite::secureHTML($nom);
         $email_secure = Securite::secureHTML($email);
 
-        /*                   if (filter_var($email_secure, FILTER_VALIDATE_EMAIL)) {
-          
+        if (filter_var($email_secure, FILTER_VALIDATE_EMAIL)) {
+
+            //profil initiale user à la connexion//
+            $profil_user_initial = $this->info_user();
+
+            //Si les champs sont identiques//
+            if ($profil_user_initial['login'] == $login_secure && $profil_user_initial['prenom'] == $prenom_secure && $profil_user_initial['nom'] == $nom_secure && $profil_user_initial['email'] == $email_secure) {
+                Toolbox::ajouterMessageAlerte("Aucune modification !", Toolbox::COULEUR_ROUGE);
+                header("Location: ./profil.php");
+                exit();
+            }
+
+            //Si l'email reste inchangé, modification des infos//
+            elseif ($profil_user_initial['email'] == $email_secure) {
+                $this->User_model->sql_modifier_profil($login_secure, $prenom_secure, $nom_secure, $email_secure, $this->id);
+
+                //set les nouvelles valeurs en variable de session
+                $resultat = $this->User_model->info_user_id($this->id);
+                $_SESSION['profil']['email'] = $resultat['email'];
+                $_SESSION['profil']['id'] = $resultat['id_utilisateur'];
+
+                Toolbox::ajouterMessageAlerte("Modification ok !", Toolbox::COULEUR_VERTE);
+                header("Location: ./profil.php");
+                exit();
+            }
+
+            //Si l'email change et n'est pas en bdd, modification des infos//
+            elseif (Register::info_user($email_secure) == false) {
+                $this->User_model->sql_modifier_profil($login_secure, $prenom_secure, $nom_secure, $email_secure, $this->id);
+
+                //set les nouvelles valeurs en variable de session
+                $resultat = $this->User_model->info_user_id($this->id);
+                $_SESSION['profil']['email'] = $resultat['email'];
+                $_SESSION['profil']['id'] = $resultat['id_utilisateur'];
+
+                Toolbox::ajouterMessageAlerte("Modification ok !", Toolbox::COULEUR_VERTE);
+                header("Location: ./profil.php");
+                exit();
+            }
+
+            //Si l'email envoyé match en bdd, refuser la modification//
+            elseif (Register::info_user($email_secure) == true) {
+                $this->User_model->sql_modifier_profil_sans_email($login_secure, $prenom_secure, $nom_secure, $this->id);
+
+                Toolbox::ajouterMessageAlerte("L'email est déjà utilisé !", Toolbox::COULEUR_ROUGE);
+                header("Location: ./profil.php");
+                exit();
+            }
         } else {
-          
-        } 
- */
-        //profil initiale user à la connexion//
-        $profil_user_initial = $this->info_user();
-
-        //Si les champs sont identiques//
-        if ($profil_user_initial['login'] == $login_secure && $profil_user_initial['prenom'] == $prenom_secure && $profil_user_initial['nom'] == $nom_secure && $profil_user_initial['email'] == $email_secure) {
-            Toolbox::ajouterMessageAlerte("Aucune modification !", Toolbox::COULEUR_ROUGE);
-            header("Location: ./profil.php");
-            exit();
-        }
-
-        //Si l'email reste inchangé, modification des infos//
-        if ($profil_user_initial['email'] == $email_secure) {
-            $this->User_model->sql_modifier_profil($login_secure, $prenom_secure, $nom_secure, $email_secure, $this->id);
-
-            //set les nouvelles valeurs en variable de session
-            $resultat = $this->User_model->info_user_id($this->id);
-            $_SESSION['profil']['email'] = $resultat['email'];
-            $_SESSION['profil']['id'] = $resultat['id_utilisateur'];
-
-            Toolbox::ajouterMessageAlerte("Modification ok !", Toolbox::COULEUR_VERTE);
-            header("Location: ./profil.php");
-            exit();
-        }
-
-        //Si l'email change et n'est pas en bdd, modification des infos//
-        if (Register::info_user($email_secure) == false) {
-            $this->User_model->sql_modifier_profil($login_secure, $prenom_secure, $nom_secure, $email_secure, $this->id);
-
-            //set les nouvelles valeurs en variable de session
-            $resultat = $this->User_model->info_user_id($this->id);
-            $_SESSION['profil']['email'] = $resultat['email'];
-            $_SESSION['profil']['id'] = $resultat['id_utilisateur'];
-
-            Toolbox::ajouterMessageAlerte("Modification ok !", Toolbox::COULEUR_VERTE);
-            header("Location: ./profil.php");
-            exit();
-        }
-
-        //Si l'email envoyé match en bdd, refuser la modification//
-        if (Register::info_user($email_secure) == true) {
             $this->User_model->sql_modifier_profil_sans_email($login_secure, $prenom_secure, $nom_secure, $this->id);
-
-            //set les nouvelles valeurs en variable de session
-            $resultat = $this->User_model->info_user_id($this->id);
-            $_SESSION['profil']['email'] = $resultat['email'];
-            $_SESSION['profil']['id'] = $resultat['id_utilisateur'];
-
-            Toolbox::ajouterMessageAlerte("L'email est déjà utilisé !", Toolbox::COULEUR_ROUGE);
+            Toolbox::ajouterMessageAlerte("Email non valide !", Toolbox::COULEUR_ROUGE);
             header("Location: ./profil.php");
             exit();
         }
