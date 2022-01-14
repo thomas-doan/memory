@@ -57,13 +57,13 @@ if (isset($_POST['submit'])) {
                 <h2>Mon profil : </h2>
 
                 <form action="profil.php" method="post">
-
+                    <label for="login"> Login </label>
                     <input type="text" name="login" value="<?= $objet_user_info['login'] ?>" autocomplete="off">
-
+                    <label for="prenom"> Prenom </label>
                     <input type="text" name="prenom" value="<?= $objet_user_info['prenom'] ?>" autocomplete="off">
-
+                    <label for="nom"> Nom </label>
                     <input type="text" name="nom" value="<?= $objet_user_info['nom'] ?>" autocomplete="off">
-
+                    <label for="email"> Email </label>
                     <input type="text" name="email" value="<?= $objet_user_info['email'] ?>" autocomplete="off">
 
                     <button type="submit" name="submit">Modifier</button>
