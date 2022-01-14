@@ -33,4 +33,17 @@ class User_model
         $stmt->closeCursor();
         return $estModifier;
     }
+
+    public static function info_user_id($id)
+    {
+        //requete sql
+        $req = "SELECT * FROM utilisateurs WHERE id_utilisateur = :id";
+        $stmt = Database::connect_db()->prepare($req);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $resultat;
+    }
 }

@@ -42,8 +42,8 @@ if (isset($_SESSION['profil'])) {
     $_SESSION['objet_utilisateur'] = new User($email_session, $id_session);
 }
 
-
-/* echo "<pre>";
+/* 
+echo "<pre>";
 var_dump($_SESSION['objet_utilisateur']);
 echo "</pre>"; */
 
