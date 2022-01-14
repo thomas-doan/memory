@@ -2,14 +2,23 @@
 require_once('../Controller/Card.php');
 require_once('../Controller/Grille.php');
 require_once('../Controller/Securite.php');
-
+require_once('../Controller/Toolbox.php');
 require_once('../Database/DB_connection.php');
-
 require_once('../Controller/User.php');
 session_start();
 
+//affiche les infos profil
 if (isset($_SESSION['objet_utilisateur'])) {
     $objet_user_info = $_SESSION['objet_utilisateur']->info_user();
+}
+
+//modifier les infos profil
+if (isset($_POST['submit'])) {
+    if (!empty($_POST['login']) && !empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['email'])) {
+        $_SESSION['objet_utilisateur']->modifier_profil_user($_POST['login'], $_POST['prenom'], $_POST['nom'], $_POST['email']);
+    } else {
+        Toolbox::ajouterMessageAlerte("Remplir tous les champs.", Toolbox::COULEUR_ROUGE);
+    }
 }
 
 ?>
