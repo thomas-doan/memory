@@ -26,9 +26,6 @@ if (isset($_POST['submit'])) {
 }
 
 
-echo "<pre>";
-var_dump($_SESSION['profil']);
-echo "</pre>";
 ?>
 
 

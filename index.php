@@ -4,6 +4,7 @@ require_once('./Controller/Grille.php');
 require_once('./Controller/Securite.php');
 require_once('./Controller/User.php');
 require_once('./Database/DB_connection.php');
+require_once('./Controller/Score.php');
 session_start();
 
 if (!isset($_SESSION['grille']) && isset($_POST['initialiser_jeu'])) {
@@ -25,7 +26,6 @@ if (isset($_POST['submit'])) {
 }
 
 if (isset($_SESSION['refresh']) && $_SESSION['refresh'] == 1) {
-
     header("refresh: 1; index.php");
 }
 
@@ -33,17 +33,14 @@ if (isset($_SESSION['grille'])) {
     $_SESSION['grille_jeu']->victoire();
 }
 
-//creation de l'objet User
+//creation de l'objet User et
+//creation de l'objet Score
 if (isset($_SESSION['profil'])) {
     $id_session = $_SESSION['profil']['id'];
     $email_session = $_SESSION['profil']['email'];
     $_SESSION['objet_utilisateur'] = new User($email_session, $id_session);
+    $_SESSION['objet_score'] = new score();
 }
-
-/* 
-echo "<pre>";
-var_dump($_SESSION['objet_utilisateur']);
-echo "</pre>"; */
 
 ?>
 
@@ -164,7 +161,7 @@ echo "</pre>"; */
             <?php }
         } else { ?>
             <div class="wrapper">
-                <div class="static-txt">Connectez-vous pour debuter Memory ! <br>avez-vous le cerveau d'un</div>
+                <div class="static-txt">Connectez-vous pour debuter <span>Memory !</span> <br>avez-vous le cerveau d'un</div>
                 <ul class="dynamic-txts">
                     <li><span>Enfant</span></li>
                     <li><span>Adolescent</span></li>
@@ -173,13 +170,8 @@ echo "</pre>"; */
                 </ul>
             </div>
 
-
         <?php
         } ?>
-
-
-
-
 
     </main>
     <footer>

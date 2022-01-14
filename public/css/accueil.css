@@ -71,6 +71,11 @@
           font-weight: 400;
       }
       
+      .wrapper .static-txt span {
+          font-weight: bold;
+          color: goldenrod;
+      }
+      
       .wrapper .dynamic-txts {
           margin-left: 15px;
           height: 90px;
