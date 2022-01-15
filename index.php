@@ -134,13 +134,13 @@ if (isset($_SESSION['profil'])) {
                                     <input type="hidden" name="etat_carte" value="<?= $value->etat_carte ?>" />
                                     <input type="hidden" name="face_carte" value="<?= $value->face_carte ?>" />
                                     <button type='submit' name="submit">
-                                        <img src="<?= $value->dos_carte ?>" alt="carte de dos" width='60vw' height='60vh' class="dos">
+                                        <img src="<?= $value->dos_carte ?>" alt="carte de dos" width='80vw' height='80vh' class="dos">
                                     </button>
                                 </form>
                             </div>
                         <?php } elseif ($value->etat_carte === 0) { ?>
                             <div>
-                                <img src="<?= $value->face_carte ?>" alt="carte de face" width='60vw' height='60vh'>
+                                <img src="<?= $value->face_carte ?>" alt="carte de face" width='80vw' height='80vh'>
                             </div>
 
                 <?php
