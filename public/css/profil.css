@@ -21,7 +21,7 @@
      
      .form_profil {
          width: 30vw;
-         margin: 2rem auto;
+         margin: 1rem auto;
          padding: 1rem;
          background: rgb(34, 193, 195);
          background: linear-gradient(10deg, rgba(34, 193, 195, 1) 0%, rgba(123, 190, 156, 1) 50%, rgba(168, 228, 212, 0.909) 61%);
@@ -31,7 +31,8 @@
          border-radius: .25rem;
      }
      
-     .form_profil h2 {
+     .form_profil h2,
+     label {
          color: rgb(54, 126, 54);
      }
      
@@ -45,10 +46,10 @@
      
      .form_profil input,
      button {
-         margin-top: 1rem;
-         margin-bottom: 1rem;
-         padding-top: 1rem;
-         padding-bottom: 1rem;
+         padding-top: 0.5rem;
+         padding-bottom: 0.5rem;
+         margin-top: 0.2rem;
+         margin-bottom: 0.2rem;
          width: 80%;
          border: none;
          border-radius: .25rem;
