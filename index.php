@@ -1,10 +1,10 @@
 <?php
-require_once('./Controller/Card.php');
-require_once('./Controller/Grille.php');
-require_once('./Controller/Securite.php');
-require_once('./Controller/User.php');
-require_once('./Database/DB_connection.php');
-require_once('./Controller/Score.php');
+require_once(__DIR__ . '/Controller/Card.php');
+require_once(__DIR__ . '/Controller/Grille.php');
+require_once(__DIR__ . '/Controller/Securite.php');
+require_once(__DIR__ . '/Controller/User.php');
+require_once(__DIR__ . '/Database/DB_connection.php');
+require_once(__DIR__ . '/Controller/Score.php');
 session_start();
 
 if (!isset($_SESSION['grille']) && isset($_POST['initialiser_jeu'])) {
