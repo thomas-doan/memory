@@ -56,6 +56,7 @@ if (isset($_SESSION['profil'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./public/css/accueil.css">
     <link rel="stylesheet" href="./public/css/header.css">
+    <link rel="stylesheet" href="./public/css/footer.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
@@ -65,9 +66,9 @@ if (isset($_SESSION['profil'])) {
     <header>
         <nav>
             <ul class="navigation">
-                <li><a href="">Home</a></li>
-                <li><a href="./View/top.php">Top 5</a></li>
+                <li><a href="">Memory</a></li>
                 <?php if (Securite::estConnecte()) : ?>
+                    <li><a href="./view/top.php">Top 10</a></li>
                     <li><a href="./View/profil.php">Profil</a></li>
                     <li><a href="./View/deconnexion.php">Deconnexion</a></li>
                 <?php endif; ?>
@@ -361,9 +362,8 @@ if (isset($_SESSION['profil'])) {
         } ?>
 
     </main>
-    <footer>
+    <?php require_once(__DIR__ . '/View/footer.php'); ?>
 
-    </footer>
     <script>
         AOS.init({
             duration: 2000,

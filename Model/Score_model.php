@@ -41,7 +41,7 @@ class Score_model
     public function sql_affiche_score_top10()
     {
         $req = "SELECT score.temps_score, score.nombre_pair, utilisateurs.login FROM score INNER JOIN utilisateurs ON score.id_fk_utilisateur = utilisateurs.id_utilisateur GROUP BY id_fk_utilisateur 
-ORDER BY  score.nombre_pair ASC, score.temps_score ASC";
+ORDER BY score.temps_score ASC";
         $stmt = Database::connect_db()->prepare($req);
         $stmt->execute();
         $resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -7,19 +7,37 @@
             font-family: 'Noto', sans-serif;
         }
         
-        .navigation {
+        header {
             background-color: rgb(255, 255, 255);
+        }
+        
+        .navigation {
             display: flex;
             justify-content: space-around;
             padding: 2rem;
             border-bottom: solid;
             border-color: darkgreen;
+            list-style: none;
         }
         
-        .navigation li,
-        a:link,
-        a {
-            list-style: none;
+        .navigation a {
             text-decoration: none;
             color: rgb(54, 126, 54);
+            position: relative;
+        }
+        
+        .navigation a::after {
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            height: 3px;
+            width: 0;
+            background: rgb(206, 181, 43);
+            z-index: 10;
+            transition: width 0.5s;
+        }
+        
+        .navigation a:hover::after {
+            width: 100%;
         }

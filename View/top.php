@@ -33,56 +33,57 @@ if (isset($_SESSION['profil'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../public/css/top.css">
     <link rel="stylesheet" href="../public/css/header.css">
+    <link rel="stylesheet" href="../public/css/footer.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
 <body>
+    <div class="container_general">
+        <header>
+            <nav>
+                <ul class="navigation">
+                    <li><a href="../index.php">Memory</a></li>
+                    <li><a href="./profil.php">Profil</a></li>
+                    <li><a href="./deconnexion.php">Deconnexion</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
 
-    <header>
-        <nav>
-            <ul class="navigation">
-                <li><a href="../index.php">Home</a></li>
-                <li><a href="#about">Top 5</a></li>
-                <li><a href="./deconnexion.php">Deconnexion</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
+            <div class="dashboard">
 
-        <div class="dashboard">
-
-            <section>
-                <table data-aos="fade-left">
-                    <caption>Wall of fame </caption>
-
-                    <tr>
-                        <th>Position</th>
-                        <th>Pseudo</th>
-                        <th>Nombre de pair</th>
-                        <th>score</th>
-                    </tr>
-                    <?php foreach ($score_top10 as $key => $value) { ?>
+                <section>
+                    <table data-aos="fade-left">
+                        <caption>Wall of fame </caption>
 
                         <tr>
-                            <td>N° <?= $key + 1 ?></td>
-                            <td><?= $value['login'] ?>s</td>
-                            <td><?= $value['nombre_pair'] ?></td>
-                            <td><?= $value['temps_score'] ?>s</td>
+                            <th>Position</th>
+                            <th>Pseudo</th>
+                            <th>Nombre de pair</th>
+                            <th>score</th>
                         </tr>
+                        <?php foreach ($score_top10 as $key => $value) { ?>
 
-                    <?php } ?>
+                            <tr>
+                                <td>N° <?= $key + 1 ?></td>
+                                <td><?= $value['login'] ?>s</td>
+                                <td><?= $value['nombre_pair'] ?></td>
+                                <td><?= $value['temps_score'] ?>s</td>
+                            </tr>
 
-                </table>
-            </section>
-        </div>
+                        <?php } ?>
+
+                    </table>
+                </section>
+            </div>
 
 
 
-    </main>
-    <footer>
+        </main>
+        <?php require_once(__DIR__ . '/footer.php'); ?>
+    </div>
 
-    </footer>
     <script>
         AOS.init({
             duration: 1000,

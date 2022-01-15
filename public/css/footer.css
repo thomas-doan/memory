@@ -1,0 +1,24 @@
+        @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+        footer {
+            margin-top: 8rem;
+        }
+        
+        footer ul {
+            display: flex;
+            justify-content: space-around;
+            padding: 1rem;
+            border-top: solid;
+            border-color: darkgreen;
+            list-style: none;
+        }
+        
+        footer ul a {
+            text-decoration: none;
+            color: rgb(54, 126, 54);
+        }
+        
+        a:hover {
+            color: rgb(54, 126, 54);
+        }
