@@ -32,6 +32,11 @@
           padding: 1rem;
       }
       
+      .boutons_jeux form button:hover {
+          background-color: darkolivegreen;
+          color: white;
+      }
+      
       .container_jeu {
           display: grid;
           gap: 1rem;

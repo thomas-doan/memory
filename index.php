@@ -70,7 +70,7 @@ if (isset($_SESSION['profil'])) {
                 <?php if (Securite::estConnecte()) : ?>
                     <li><a href="./view/top.php">Top 10</a></li>
                     <li><a href="./View/profil.php">Profil</a></li>
-                    <li><a href="./View/deconnexion.php">Deconnexion</a></li>
+                    <li><a href="./View/deconnexion.php">Logout</a></li>
                 <?php endif; ?>
                 <?php if (!Securite::estConnecte()) : ?>
                     <li><a href="./View/connexion.php">Connexion</a></li>

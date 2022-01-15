@@ -27,3 +27,19 @@
         border-bottom-width: .125rem;
         border-color: green;
     }
+    
+    @media (max-width: 400px) {
+        table {
+            border-collapse: top;
+            color: green;
+            caption-side: top;
+            margin-top: 1rem;
+        }
+        td,
+        th {
+            border-bottom: solid;
+            padding: 0.5rem;
+            border-bottom-width: .125rem;
+            border-color: green;
+        }
+    }

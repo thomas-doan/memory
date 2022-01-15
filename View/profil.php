@@ -60,7 +60,7 @@ if (isset($_SESSION['profil'])) {
             <ul class="navigation">
                 <li><a href="../index.php">Memory</a></li>
                 <li><a href="./top.php">Top 10</a></li>
-                <li><a href="./deconnexion.php">Deconnexion</a></li>
+                <li><a href="./deconnexion.php">Logout</a></li>
             </ul>
         </nav>
     </header>
