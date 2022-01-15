@@ -58,6 +58,15 @@
       }
       /*  *********animation TEXT*********** */
       
+      .mobile_affichage {
+          visibility: hidden;
+          color: rgb(54, 126, 54);
+      }
+      
+      .mobile_affichage span {
+          font-weight: bold;
+      }
+      
       .wrapper {
           display: flex;
           flex-direction: column;
@@ -126,5 +135,96 @@
           }
           100% {
               left: 0;
+          }
+      }
+      
+      svg {}
+      
+      .st2 {
+          fill: none;
+          stroke: #000;
+          stroke-width: 0.5;
+          stroke-miterlimit: 10;
+          stroke-dasharray: 150;
+          stroke-dashoffset: 150;
+          animation-name: draw;
+          animation-duration: 3s;
+          animation-iteration-count: 1;
+          animation-fill-mode: forwards;
+          animation-timing-function: linear;
+      }
+      
+      @keyframes draw {
+          to {
+              stroke-dashoffset: 0;
+          }
+      }
+      
+      .st3 {
+          fill: none;
+          stroke: #000;
+          stroke-width: 0.35;
+          stroke-miterlimit: 10;
+          stroke-dasharray: 150;
+          stroke-dashoffset: 150;
+          animation-name: draw;
+          animation-duration: 3s;
+          animation-iteration-count: 1;
+          animation-fill-mode: forwards;
+          animation-timing-function: linear;
+      }
+      
+      .st4 {
+          fill: none;
+          stroke: #000;
+          stroke-width: 0.5;
+          stroke-miterlimit: 10;
+          stroke-dasharray: 300;
+          stroke-dashoffset: 300;
+          animation-name: draw;
+          animation-duration: 3s;
+          animation-iteration-count: 1;
+          animation-fill-mode: forwards;
+          animation-timing-function: linear;
+      }
+      
+      .st5 {
+          fill: none;
+          stroke: #000;
+          stroke-width: 0.35;
+          stroke-miterlimit: 10;
+          stroke-dasharray: 300;
+          stroke-dashoffset: 300;
+          animation-name: draw;
+          animation-duration: 3s;
+          animation-iteration-count: 1;
+          animation-fill-mode: forwards;
+          animation-timing-function: linear;
+      }
+      
+      @media (max-width: 400px) {
+          .wrapper .static-txt {
+              color: rgb(54, 126, 54);
+              font-size: 1rem;
+              font-weight: 400;
+              text-align: justify;
+          }
+          .dynamic-txts li {
+              list-style: none;
+              color: rgb(54, 126, 54);
+              font-size: 1rem;
+              font-weight: 500;
+              position: relative;
+              top: 0;
+              animation: slide 12s steps(4) infinite;
+          }
+          .dynamic-txts li span::after {
+              content: "";
+              position: absolute;
+              left: 0;
+              height: 100%;
+              width: 100%;
+              background: #ffffff;
+              border-left: 2px solid #ffffff;
           }
       }
