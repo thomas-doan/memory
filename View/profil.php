@@ -48,6 +48,8 @@ if (isset($_SESSION['profil'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../public/css/profil.css">
     <link rel="stylesheet" href="../public/css/header.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
 <body>
@@ -87,7 +89,7 @@ if (isset($_SESSION['profil'])) {
             </section>
             <div class="dashboard">
                 <section>
-                    <table>
+                    <table data-aos="fade-left">
                         <caption>Activité</caption>
 
                         <tr>
@@ -110,7 +112,7 @@ if (isset($_SESSION['profil'])) {
                 </section>
 
                 <section>
-                    <table>
+                    <table data-aos="fade-left">
                         <caption>Dashboard</caption>
 
                         <tr>
@@ -123,7 +125,7 @@ if (isset($_SESSION['profil'])) {
                             <tr>
                                 <td><?= $value['min'] ?>s</td>
                                 <td><?= $value['nombre_pair'] ?></td>
-                                <td><?= $value['moyenne'] ?></td>
+                                <td><?= $value['moyenne'] ?>s</td>
                             </tr>
 
                         <?php } ?>
@@ -138,7 +140,12 @@ if (isset($_SESSION['profil'])) {
     <footer>
 
     </footer>
+    <script>
+        AOS.init({
+            duration: 1000,
 
+        })
+    </script>
 </body>
 
 </html>

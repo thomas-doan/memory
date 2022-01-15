@@ -9,8 +9,10 @@
       
       .boutons_jeux {
           display: flex;
+          flex-direction: column;
           justify-content: center;
           padding: 2rem;
+          align-items: center;
       }
       
       .boutons_jeux form {
@@ -82,7 +84,7 @@
           font-weight: 400;
       }
       
-      .wrapper .static-txt span {
+      .wrapper p span {
           font-weight: bold;
           color: goldenrod;
       }

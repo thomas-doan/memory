@@ -83,6 +83,7 @@ if (isset($_SESSION['profil'])) {
         <?php require_once(__DIR__ . '/View/gestion_erreur.php'); ?>
         <?php if (isset($_SESSION['profil'])) { ?>
             <div class="boutons_jeux">
+                <img src="./public/img/brain.png" alt="image cerveau" width='15%' height='15%'>
 
                 <?php if (!isset($_SESSION['grille'])) { ?>
 
@@ -101,6 +102,7 @@ if (isset($_SESSION['profil'])) {
                         <button type='submit'>
                             OK
                         </button>
+
                     </form>
 
 
@@ -167,13 +169,14 @@ if (isset($_SESSION['profil'])) {
 
             <div class="wrapper">
 
-                <div class="static-txt" data-aos="fade-down">Connectez-vous pour débuter <span>Memory Game.</span> <br>Avez-vous le cerveau d'un</div>
+                <div class="static-txt" data-aos="fade-down">Avez-vous le cerveau d'un</div>
                 <ul class="dynamic-txts" data-aos="zoom-out" data-aos-duration="3000">
-                    <li><span>Enfant</span></li>
-                    <li><span>Adolescent</span></li>
-                    <li><span>Adulte</span></li>
+                    <li><span>Enfant ?</span></li>
+                    <li><span>Adolescent ?</span></li>
+                    <li><span>Adulte ?</span></li>
                     <li><span>Qui suis je ?</span></li>
                 </ul>
+                <p data-aos="zoom-out" data-aos-duration="3000">Connectez-vous pour débuter <span>Memory Game.</span> </p>
 
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 360 216" style="enable-background:new 0 0 360 216;" xml:space="preserve" data-aos="fade-up">
                     <g>
