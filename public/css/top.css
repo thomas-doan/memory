@@ -1,0 +1,29 @@
+    @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Noto', sans-serif;
+    }
+    
+    .dashboard {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    
+    table {
+        border-collapse: top;
+        color: green;
+        caption-side: top;
+        margin-top: 2rem;
+    }
+    
+    td,
+    th {
+        border-bottom: solid;
+        padding: 1rem;
+        border-bottom-width: .125rem;
+        border-color: green;
+    }

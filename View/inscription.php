@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
         <nav>
             <ul class="navigation">
                 <li><a href="../index.php">Home</a></li>
-                <li><a href="#about">Top10</a></li>
+                <li><a href="#about">Top 5</a></li>
                 <li><a href="./connexion.php">Connexion</a></li>
             </ul>
         </nav>

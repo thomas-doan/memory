@@ -66,7 +66,7 @@ if (isset($_SESSION['profil'])) {
         <nav>
             <ul class="navigation">
                 <li><a href="">Home</a></li>
-                <li><a href="">Top10</a></li>
+                <li><a href="./View/top.php">Top 5</a></li>
                 <?php if (Securite::estConnecte()) : ?>
                     <li><a href="./View/profil.php">Profil</a></li>
                     <li><a href="./View/deconnexion.php">Deconnexion</a></li>
