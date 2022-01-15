@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . "/../Model/Score_model.php");
+include_once(__DIR__ . "/../model/Score_model.php");
 class Score
 {
 

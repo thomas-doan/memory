@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__ . '/../Controller/User.php');
-require_once(__DIR__ . '/../Controller/Securite.php');
+require_once(__DIR__ . '/../controller/User.php');
+require_once(__DIR__ . '/../controller/Securite.php');
 session_start();
 
 if (!Securite::estConnecte()) {

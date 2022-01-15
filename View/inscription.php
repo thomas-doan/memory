@@ -1,8 +1,8 @@
 <?php
-require_once(__DIR__ . '/../Model/Register_Login_model.php');
-require_once(__DIR__ . '/../Controller/Toolbox.php');
-require_once(__DIR__ . '/../Controller/Securite.php');
-require_once(__DIR__ . '/../Database/DB_connection.php');
+require_once(__DIR__ . '/../model/Register_Login_model.php');
+require_once(__DIR__ . '/../controller/Toolbox.php');
+require_once(__DIR__ . '/../controller/Securite.php');
+require_once(__DIR__ . '/../database/DB_connection.php');
 
 session_start();
 

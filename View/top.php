@@ -1,11 +1,11 @@
 <?php
-require_once(__DIR__ . '/../Controller/Card.php');
-require_once(__DIR__ . '/../Controller/Grille.php');
-require_once(__DIR__ . '/../Controller/Securite.php');
-require_once(__DIR__ . '/../Controller/Toolbox.php');
-require_once(__DIR__ . '/../Database/DB_connection.php');
-require_once(__DIR__ . '/../Controller/User.php');
-require_once(__DIR__ . '/../Controller/Score.php');
+require_once(__DIR__ . '/../controller/Card.php');
+require_once(__DIR__ . '/../controller/Grille.php');
+require_once(__DIR__ . '/../controller/Securite.php');
+require_once(__DIR__ . '/../controller/Toolbox.php');
+require_once(__DIR__ . '/../database/DB_connection.php');
+require_once(__DIR__ . '/../controller/User.php');
+require_once(__DIR__ . '/../controller/Score.php');
 session_start();
 
 if (!Securite::estConnecte()) {

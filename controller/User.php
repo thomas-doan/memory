@@ -1,7 +1,7 @@
 <?php
 
-require_once(__DIR__ . "/../Model/Register_Login_model.php");
-require_once(__DIR__ . "/../Model/User_model.php");
+include_once(__DIR__ . "/../model/Register_Login_model.php");
+include_once(__DIR__ . "/../model/User_model.php");
 class User
 {
     public $id;
