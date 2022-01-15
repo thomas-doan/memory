@@ -22,4 +22,10 @@ class Score
         $resultat =  $this->Score_model->sql_afficher_score_user($id);
         return $resultat;
     }
+
+    public function dashboard_user($id)
+    {
+        $resultat =  $this->Score_model->sql_dashboard_user($id);
+        return $resultat;
+    }
 }

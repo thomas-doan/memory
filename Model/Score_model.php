@@ -25,4 +25,16 @@ class Score_model
         $stmt->closeCursor();
         return $resultat;
     }
+
+    public function sql_dashboard_user($id)
+    {
+        $req = "SELECT MIN(temps_score) as min, nombre_pair,  AVG(temps_score) as moyenne FROM  score WHERE id_fk_utilisateur = :id GROUP BY nombre_pair";
+        $stmt = Database::connect_db()->prepare($req);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $resultat;
+    }
 }

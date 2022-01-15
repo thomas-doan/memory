@@ -30,6 +30,7 @@ if (isset($_SESSION['profil'])) {
     $id_session = $_SESSION['profil']['id'];
 
     $ensemble_score_user = $_SESSION['objet_score']->affiche_score_user($id_session);
+    $dashboard_user = $_SESSION['objet_score']->dashboard_user($id_session);
 }
 
 ?>
@@ -84,28 +85,53 @@ if (isset($_SESSION['profil'])) {
                 </div>
 
             </section>
-            <section>
-                <table>
-                    <caption>Score de Memory</caption>
-
-                    <tr>
-                        <th>Date</th>
-                        <th>temps</th>
-                        <th>Nombre de pair</th>
-                    </tr>
-                    <?php foreach ($ensemble_score_user as $value) { ?>
+            <div class="dashboard">
+                <section>
+                    <table>
+                        <caption>Activité</caption>
 
                         <tr>
-                            <td><?= $value['date'] ?></td>
-                            <td><?= $value['temps_score'] ?>s</td>
-                            <td><?= $value['nombre_pair'] ?></td>
+                            <th>Date</th>
+                            <th>temps</th>
+                            <th>Nombre de pair</th>
                         </tr>
+                        <?php foreach ($ensemble_score_user as $value) { ?>
 
-                    <?php } ?>
+                            <tr>
+                                <td><?= $value['date'] ?></td>
+                                <td><?= $value['temps_score'] ?>s</td>
+                                <td><?= $value['nombre_pair'] ?></td>
+                            </tr>
+
+                        <?php } ?>
 
 
-                </table>
-            </section>
+                    </table>
+                </section>
+
+                <section>
+                    <table>
+                        <caption>Dashboard</caption>
+
+                        <tr>
+                            <th>Meilleur score</th>
+                            <th>Nombre de pair</th>
+                            <th>Moyenne</th>
+                        </tr>
+                        <?php foreach ($dashboard_user as $value) { ?>
+
+                            <tr>
+                                <td><?= $value['min'] ?>s</td>
+                                <td><?= $value['nombre_pair'] ?></td>
+                                <td><?= $value['moyenne'] ?></td>
+                            </tr>
+
+                        <?php } ?>
+
+                    </table>
+                </section>
+            </div>
+
         </div>
 
     </main>

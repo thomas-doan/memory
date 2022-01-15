@@ -86,6 +86,7 @@ if (isset($_SESSION['profil'])) {
 
 
                     <form method='POST' action=''>
+                        <p>Memory Game</p>
                         <select name="initialiser_jeu">
 
                             <option value="">Choisir vos nombres de paires</option>

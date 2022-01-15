@@ -16,6 +16,8 @@
       .boutons_jeux form {
           display: flex;
           flex-direction: column;
+          color: darkolivegreen;
+          text-align: center;
       }
       
       .boutons_jeux form button,
