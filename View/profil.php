@@ -65,77 +65,74 @@ if (isset($_SESSION['profil'])) {
         </nav>
     </header>
     <main>
-        <div class="container_profil">
+
+        <section class="form_profil">
+
+            <?php require_once(__DIR__ . '/gestion_erreur.php'); ?>
+
+            <h2>Mon profil : </h2>
+
+            <form action="profil.php" method="post">
+                <label for="login"> Login </label>
+                <input type="text" name="login" value="<?= $objet_user_info['login'] ?>" autocomplete="off">
+                <label for="prenom"> Prenom </label>
+                <input type="text" name="prenom" value="<?= $objet_user_info['prenom'] ?>" autocomplete="off">
+                <label for="nom"> Nom </label>
+                <input type="text" name="nom" value="<?= $objet_user_info['nom'] ?>" autocomplete="off">
+                <label for="email"> Email </label>
+                <input type="text" name="email" value="<?= $objet_user_info['email'] ?>" autocomplete="off">
+
+                <button type="submit" name="submit">Modifier</button>
+            </form>
+
+        </section>
+        <div class="dashboard">
             <section>
-                <div class="form_profil">
-                    <?php require_once(__DIR__ . '/gestion_erreur.php'); ?>
+                <table data-aos="fade-left">
+                    <caption>Activité</caption>
 
-                    <h2>Mon profil : </h2>
+                    <tr>
+                        <th>Date</th>
+                        <th>temps</th>
+                        <th>Nombre de pair</th>
+                    </tr>
+                    <?php foreach ($ensemble_score_user as $value) { ?>
 
-                    <form action="profil.php" method="post">
-                        <label for="login"> Login </label>
-                        <input type="text" name="login" value="<?= $objet_user_info['login'] ?>" autocomplete="off">
-                        <label for="prenom"> Prenom </label>
-                        <input type="text" name="prenom" value="<?= $objet_user_info['prenom'] ?>" autocomplete="off">
-                        <label for="nom"> Nom </label>
-                        <input type="text" name="nom" value="<?= $objet_user_info['nom'] ?>" autocomplete="off">
-                        <label for="email"> Email </label>
-                        <input type="text" name="email" value="<?= $objet_user_info['email'] ?>" autocomplete="off">
+                        <tr>
+                            <td><?= $value['date'] ?></td>
+                            <td><?= $value['temps_score'] ?>s</td>
+                            <td><?= $value['nombre_pair'] ?></td>
+                        </tr>
 
-                        <button type="submit" name="submit">Modifier</button>
-                    </form>
+                    <?php } ?>
 
-                </div>
 
+                </table>
             </section>
-            <div class="dashboard">
-                <section>
-                    <table data-aos="fade-left">
-                        <caption>Activité</caption>
+
+            <section>
+                <table data-aos="fade-left">
+                    <caption>Dashboard de nos performances</caption>
+
+                    <tr>
+                        <th>Meilleur score</th>
+                        <th>Nombre de pair</th>
+                        <th>Moyenne</th>
+                    </tr>
+                    <?php foreach ($dashboard_user as $value) { ?>
 
                         <tr>
-                            <th>Date</th>
-                            <th>temps</th>
-                            <th>Nombre de pair</th>
+                            <td><?= $value['min'] ?>s</td>
+                            <td><?= $value['nombre_pair'] ?></td>
+                            <td><?= $value['moyenne'] ?>s</td>
                         </tr>
-                        <?php foreach ($ensemble_score_user as $value) { ?>
 
-                            <tr>
-                                <td><?= $value['date'] ?></td>
-                                <td><?= $value['temps_score'] ?>s</td>
-                                <td><?= $value['nombre_pair'] ?></td>
-                            </tr>
+                    <?php } ?>
 
-                        <?php } ?>
-
-
-                    </table>
-                </section>
-
-                <section>
-                    <table data-aos="fade-left">
-                        <caption>Dashboard de nos performances</caption>
-
-                        <tr>
-                            <th>Meilleur score</th>
-                            <th>Nombre de pair</th>
-                            <th>Moyenne</th>
-                        </tr>
-                        <?php foreach ($dashboard_user as $value) { ?>
-
-                            <tr>
-                                <td><?= $value['min'] ?>s</td>
-                                <td><?= $value['nombre_pair'] ?></td>
-                                <td><?= $value['moyenne'] ?>s</td>
-                            </tr>
-
-                        <?php } ?>
-
-                    </table>
-                </section>
-            </div>
-
+                </table>
+            </section>
         </div>
+
 
     </main>
     <?php require_once(__DIR__ . '/footer.php'); ?>

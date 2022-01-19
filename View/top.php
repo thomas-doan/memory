@@ -42,69 +42,69 @@ if (isset($_POST['top'])) {
 </head>
 
 <body>
-    <div class="container_general">
-        <header>
-            <nav>
-                <ul class="navigation">
-                    <li><a href="../index.php">Memory</a></li>
-                    <li><a href="./profil.php">Profil</a></li>
-                    <li><a href="./deconnexion.php">Logout</a></li>
-                </ul>
-            </nav>
-        </header>
-        <main>
 
-            <div class="dashboard">
-                <form method='POST' action=''>
-                    <p>classement Nombres de paires :</p>
-                    <select name="top">
+    <header>
+        <nav>
+            <ul class="navigation">
+                <li><a href="../index.php">Memory</a></li>
+                <li><a href="./profil.php">Profil</a></li>
+                <li><a href="./deconnexion.php">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
 
-                        <option value="">Choisir vos nombres de paires</option>
-                        <?php for ($i = 3; $i <= 12; $i++) {
-                        ?>
-                            <option value=<?= $i ?>><?= $i ?></option>
-                        <?php } ?>
+        <div class="dashboard">
+            <form method='POST' action=''>
+                <p>classement Nombres de paires :</p>
+                <select name="top">
 
-                    </select>
-                    <button type='submit'>
-                        OK
-                    </button>
+                    <option value="">Choisir vos nombres de paires</option>
+                    <?php for ($i = 3; $i <= 12; $i++) {
+                    ?>
+                        <option value=<?= $i ?>><?= $i ?></option>
+                    <?php } ?>
 
-                </form>
+                </select>
+                <button type='submit'>
+                    OK
+                </button>
 
-                <?php if (isset($_POST['top'])) { ?>
-                    <section>
-                        <table data-aos="fade-left">
-                            <caption>Wall of fame </caption>
+            </form>
+
+            <?php if (isset($_POST['top'])) { ?>
+                <section>
+                    <table data-aos="fade-left">
+                        <caption>Wall of fame </caption>
+
+                        <tr>
+                            <th>Position</th>
+                            <th>Pseudo</th>
+                            <th>Nombre de pair</th>
+                            <th>score</th>
+                        </tr>
+                        <?php foreach ($score_top10 as $key => $value) { ?>
 
                             <tr>
-                                <th>Position</th>
-                                <th>Pseudo</th>
-                                <th>Nombre de pair</th>
-                                <th>score</th>
+                                <td>N° <?= $key + 1 ?></td>
+                                <td><?= $value['login'] ?>s</td>
+                                <td><?= $value['nombre_pair'] ?></td>
+                                <td><?= $value['temps_score'] ?>s</td>
                             </tr>
-                            <?php foreach ($score_top10 as $key => $value) { ?>
 
-                                <tr>
-                                    <td>N° <?= $key + 1 ?></td>
-                                    <td><?= $value['login'] ?>s</td>
-                                    <td><?= $value['nombre_pair'] ?></td>
-                                    <td><?= $value['temps_score'] ?>s</td>
-                                </tr>
+                        <?php } ?>
 
-                            <?php } ?>
+                    </table>
+                </section>
+            <?php } ?>
 
-                        </table>
-                    </section>
-                <?php } ?>
-
-            </div>
+        </div>
 
 
 
-        </main>
-        <?php require_once(__DIR__ . '/footer.php'); ?>
-    </div>
+    </main>
+    <?php require_once(__DIR__ . '/footer.php'); ?>
+
 
     <script>
         AOS.init({

@@ -3,7 +3,7 @@ require_once(__DIR__ . '/../model/Register_Login_model.php');
 require_once(__DIR__ . '/../controller/Toolbox.php');
 require_once(__DIR__ . '/../controller/Securite.php');
 require_once(__DIR__ . '/../database/DB_connection.php');
-require_once(__DIR__ . '/../controller/test.php');
+
 
 session_start();
 
@@ -58,16 +58,14 @@ if (isset($_POST['submit'])) {
 
                 <form action="connexion.php" method="post">
 
-
                     <input type="text" name="email" placeholder="Email" autocomplete="off">
 
                     <input type="password" name="password" placeholder="Votre mot de passe" autocomplete="off">
 
-
-
                     <button type="submit" name="submit">Valider</button>
+
+                </form>
             </div>
-            </form>
         </section>
 
 

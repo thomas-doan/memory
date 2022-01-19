@@ -88,7 +88,6 @@ echo "</pre>"; */
         <?php require_once(__DIR__ . '/View/gestion_erreur.php'); ?>
         <?php if (isset($_SESSION['profil'])) { ?>
             <div class="boutons_jeux">
-                <img src="./public/img/brain.png" alt="image cerveau" width='5%' height='5%'>
 
                 <?php if (!isset($_SESSION['grille'])) { ?>
 
@@ -128,7 +127,6 @@ echo "</pre>"; */
 
                 if (isset($_SESSION['grille'])) {
 
-
                     foreach ($_SESSION['grille'] as $key => $value) {
 
                         if ($value->etat_carte === 1) { ?>
@@ -157,9 +155,7 @@ echo "</pre>"; */
                         $_SESSION['refresh'] = 0;
                         unset($_SESSION['verif']);
                     }
-                };
-
-                ?>
+                }; ?>
             </div>
             <?php
             //affiche le temps réalisé.

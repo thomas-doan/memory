@@ -11,6 +11,18 @@
             background-color: rgb(255, 255, 255);
         }
         
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        main {
+            display: flex;
+            flex-direction: column;
+            flex: 1 0 auto;
+        }
+        
         .navigation {
             display: flex;
             justify-content: space-around;
