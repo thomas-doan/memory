@@ -29,9 +29,9 @@ class Score
         return $resultat;
     }
 
-    public function affiche_score_top10()
+    public function affiche_score_top10($pair)
     {
-        $resultat = $this->Score_model->sql_affiche_score_top10();
+        $resultat = $this->Score_model->sql_affiche_score_top10($pair);
         return $resultat;
     }
 }

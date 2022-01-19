@@ -4,6 +4,7 @@ require_once(__DIR__ . '/../controller/Toolbox.php');
 require_once(__DIR__ . '/../controller/Securite.php');
 require_once(__DIR__ . '/../database/DB_connection.php');
 
+
 session_start();
 
 if (Securite::estConnecte()) {

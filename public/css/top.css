@@ -9,13 +9,21 @@
     
     .dashboard {
         display: flex;
+        flex-direction: column;
         justify-content: space-around;
         flex-wrap: wrap;
+        align-items: center;
+        color: green;
+    }
+    
+    .dashboard button {
+        border: none;
+        border-radius: 2px;
+        padding: 0.5rem;
     }
     
     table {
         border-collapse: top;
-        color: green;
         caption-side: top;
         margin-top: 2rem;
     }
@@ -31,7 +39,6 @@
     @media (max-width: 400px) {
         table {
             border-collapse: top;
-            color: green;
             caption-side: top;
             margin-top: 1rem;
         }

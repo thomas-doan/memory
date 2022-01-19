@@ -73,18 +73,31 @@ class Grille
         $_SESSION['victoire'] = time();
 
         $_SESSION['resultat_temps_reussite'] = substr($_SESSION['victoire'] -  $_SESSION['chrono_debut_jeu'], 0, 10);
-        echo "Victoire, memory réalisé en " . $_SESSION['resultat_temps_reussite'] . " secondes.";
         $temps = $_SESSION['resultat_temps_reussite'];
-        $_SESSION['objet_score']->envoyer_score($_SESSION['profil']['id'], $temps, $this->taille_grille);
         unset($_SESSION['victoire']);
+        unset($_SESSION['verif']);
         unset($_SESSION['chrono_debut_jeu']);
+        unset($_SESSION['resultat_temps_reussite']);
+        if ($temps > 0) {
+            echo "Victoire, memory réalisé en " . $temps . " secondes.";
+
+            $_SESSION['objet_score']->envoyer_score($_SESSION['profil']['id'], $temps, $this->taille_grille);
+        }
+        if ($temps == 0) {
+            Toolbox::ajouterMessageAlerte("Erreur, relancer le jeu!", Toolbox::COULEUR_ROUGE);
+            header("refresh :0, ./profil.php");
+            exit();
+        }
     }
 
     public function reset_session_jeu()
     {
 
-
+        unset($_SESSION['victoire']);
+        unset($_SESSION['verif']);
+        unset($_SESSION['chrono_debut_jeu']);
         unset($_SESSION['resultat_temps_reussite']);
         unset($_SESSION['grille']);
+        unset($_SESSION['grille_jeu']);
     }
 }

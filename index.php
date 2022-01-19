@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__ . '/controller/Card.php');
 require_once(__DIR__ . '/controller/Grille.php');
+require_once(__DIR__ . '/controller/Toolbox.php');
 require_once(__DIR__ . '/controller/Securite.php');
 require_once(__DIR__ . '/controller/User.php');
 require_once(__DIR__ . '/database/DB_connection.php');
@@ -41,6 +42,9 @@ if (isset($_SESSION['profil'])) {
     $_SESSION['objet_utilisateur'] = new User($email_session, $id_session);
     $_SESSION['objet_score'] = new score();
 }
+/* echo "<pre>";
+var_dump($_SESSION);
+echo "</pre>"; */
 
 ?>
 
@@ -84,7 +88,7 @@ if (isset($_SESSION['profil'])) {
         <?php require_once(__DIR__ . '/View/gestion_erreur.php'); ?>
         <?php if (isset($_SESSION['profil'])) { ?>
             <div class="boutons_jeux">
-                <img src="./public/img/brain.png" alt="image cerveau" width='15%' height='15%'>
+                <img src="./public/img/brain.png" alt="image cerveau" width='5%' height='5%'>
 
                 <?php if (!isset($_SESSION['grille'])) { ?>
 
@@ -111,7 +115,7 @@ if (isset($_SESSION['profil'])) {
                 }
                 if (isset($_SESSION['grille'])) { ?>
                     <form method='POST' action=''>
-                        <button type='submit' name='relancer_jeu' value='12'>
+                        <button type='submit' name='relancer_jeu'>
                             Reinitialiser memory
                         </button>
                     </form>
@@ -128,20 +132,20 @@ if (isset($_SESSION['profil'])) {
                     foreach ($_SESSION['grille'] as $key => $value) {
 
                         if ($value->etat_carte === 1) { ?>
-                            <div>
+                            <div id="game">
                                 <form method='POST' action=''>
                                     <input type="hidden" name="position" value="<?= $key ?>" />
                                     <input type="hidden" name="id_carte" value="<?= $value->id_carte ?>" />
                                     <input type="hidden" name="etat_carte" value="<?= $value->etat_carte ?>" />
                                     <input type="hidden" name="face_carte" value="<?= $value->face_carte ?>" />
                                     <button type='submit' name="submit">
-                                        <img src="<?= $value->dos_carte ?>" alt="carte de dos" width='80vw' height='80vh' class="dos">
+                                        <img src="<?= $value->dos_carte ?>" alt="carte de dos" width='50vw' height='50vh' class="dos">
                                     </button>
                                 </form>
                             </div>
                         <?php } elseif ($value->etat_carte === 0) { ?>
                             <div>
-                                <img src="<?= $value->face_carte ?>" alt="carte de face" width='80vw' height='80vh'>
+                                <img src="<?= $value->face_carte ?>" alt="carte de face" width='50vw' height='50vh'>
                             </div>
 
                 <?php
@@ -179,7 +183,7 @@ if (isset($_SESSION['profil'])) {
                 </ul>
                 <p data-aos="zoom-out" data-aos-duration="3000">Connectez-vous pour débuter <span>Memory Game.</span> </p>
 
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 360 216" style="enable-background:new 0 0 360 216;" xml:space="preserve" data-aos="fade-up">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 360 216" style="enable-background:new 0 0 360 216;" xml:space="preserve">
                     <g>
                         <path class="st2" d="M62.8,117.2c0,0-7.8-0.6-11.6-1.3c-3.9-0.7-7.9-3-12.7-5.8s-6.3-0.2-7.8-5.3c0,0-0.4-1.3-1.9-2.2
 			c-1.5-0.9-3.3-1.8-3.8-5.4c-0.4-3.6-1.6-2-1-4.1" />

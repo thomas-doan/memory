@@ -38,12 +38,13 @@ class Score_model
         return $resultat;
     }
 
-    public function sql_affiche_score_top10()
+    public function sql_affiche_score_top10($pair)
     {
-        $req = "SELECT score.temps_score, score.nombre_pair, utilisateurs.login FROM score INNER JOIN utilisateurs ON score.id_fk_utilisateur = utilisateurs.id_utilisateur GROUP BY id_fk_utilisateur 
-ORDER BY score.temps_score ASC";
+        $req = "SELECT DISTINCT score.temps_score, score.nombre_pair, utilisateurs.login FROM score INNER JOIN utilisateurs ON score.id_fk_utilisateur = utilisateurs.id_utilisateur WHERE score.nombre_pair = :pair GROUP BY score.temps_score, score.id_fk_utilisateur   ORDER BY score.temps_score ASC LIMIT 0, 10;";
         $stmt = Database::connect_db()->prepare($req);
-        $stmt->execute();
+        $stmt->execute(array(
+            ":pair" => $pair
+        ));
         $resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $resultat;
     }

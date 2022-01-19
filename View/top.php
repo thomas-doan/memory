@@ -14,8 +14,11 @@ if (!Securite::estConnecte()) {
 
 if (isset($_SESSION['profil'])) {
     $id_session = $_SESSION['profil']['id'];
+}
 
-    $score_top10 = $_SESSION['objet_score']->affiche_score_top10();
+if (isset($_POST['top'])) {
+    $pair = $_POST['top'];
+    $score_top10 = $_SESSION['objet_score']->affiche_score_top10($pair);
 }
 
 ?>
@@ -52,30 +55,49 @@ if (isset($_SESSION['profil'])) {
         <main>
 
             <div class="dashboard">
+                <form method='POST' action=''>
+                    <p>classement Nombres de paires :</p>
+                    <select name="top">
 
-                <section>
-                    <table data-aos="fade-left">
-                        <caption>Wall of fame </caption>
-
-                        <tr>
-                            <th>Position</th>
-                            <th>Pseudo</th>
-                            <th>Nombre de pair</th>
-                            <th>score</th>
-                        </tr>
-                        <?php foreach ($score_top10 as $key => $value) { ?>
-
-                            <tr>
-                                <td>N° <?= $key + 1 ?></td>
-                                <td><?= $value['login'] ?>s</td>
-                                <td><?= $value['nombre_pair'] ?></td>
-                                <td><?= $value['temps_score'] ?>s</td>
-                            </tr>
-
+                        <option value="">Choisir vos nombres de paires</option>
+                        <?php for ($i = 3; $i <= 12; $i++) {
+                        ?>
+                            <option value=<?= $i ?>><?= $i ?></option>
                         <?php } ?>
 
-                    </table>
-                </section>
+                    </select>
+                    <button type='submit'>
+                        OK
+                    </button>
+
+                </form>
+
+                <?php if (isset($_POST['top'])) { ?>
+                    <section>
+                        <table data-aos="fade-left">
+                            <caption>Wall of fame </caption>
+
+                            <tr>
+                                <th>Position</th>
+                                <th>Pseudo</th>
+                                <th>Nombre de pair</th>
+                                <th>score</th>
+                            </tr>
+                            <?php foreach ($score_top10 as $key => $value) { ?>
+
+                                <tr>
+                                    <td>N° <?= $key + 1 ?></td>
+                                    <td><?= $value['login'] ?>s</td>
+                                    <td><?= $value['nombre_pair'] ?></td>
+                                    <td><?= $value['temps_score'] ?>s</td>
+                                </tr>
+
+                            <?php } ?>
+
+                        </table>
+                    </section>
+                <?php } ?>
+
             </div>
 
 
